@@ -1,0 +1,28 @@
+{
+  "name": "yousof.site",
+  "version": "1.0.0",
+  "description": "my site",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YousofMersal/yousof.site.git"
+  },
+  "keywords": [
+    "node",
+    "website"
+  ],
+  "author": "Yousof Mersal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YousofMersal/yousof.site/issues"
+  },
+  "homepage": "https://github.com/YousofMersal/yousof.site#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  }
+}
