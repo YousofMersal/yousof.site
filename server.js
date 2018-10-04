@@ -6,21 +6,21 @@ const port = 9001
 app.use(express.static(__dirname + '/public'))
 
 app.get('/', (req, res)=>{
-    fs.readFile('/landing.html', 'utf-8', (error, data)=>{
+    fs.readFile('./index.html', 'utf-8', (error, data)=>{
         if (error) {
             try {
                 res.sendStatus(500).send('Oops! Something Went wrong!')
             } catch (error) {
                 console.log(error)
             }
-        }else {
+        } else {
             res.write(data)
             res.end()
         }
     })
 })
 
-app.get('user', (res,res)=>{
+app.get('user', (req, res)=>{
     fs.readFile('')
 })
 
