@@ -3,9 +3,10 @@ const bodyParser = require('body-parser')
 const fs = require('fs')
 const app = express()
 const port = 9001
+app.use(express.static(__dirname + '/public'))
 
 app.get('/', (req, res)=>{
-    fs.readFile('./views/landing.html', 'utf-8', (error, data)=>{
+    fs.readFile('/landing.html', 'utf-8', (error, data)=>{
         if (error) {
             try {
                 res.sendStatus(500).send('Oops! Something Went wrong!')
@@ -19,6 +20,10 @@ app.get('/', (req, res)=>{
     })
 })
 
+app.get('user', (res,res)=>{
+    fs.readFile('')
+})
+
 app.listen(port, ()=>{
-    console.log('Koala Keeper serving to the world!')
+    console.log('Koala Keeper, serving to the world!')
 })
