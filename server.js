@@ -1,6 +1,5 @@
 const bodyParser = require('body-parser')
 const express    = require('express')
-const mysql      = require('mysql')
 const http       = require('http')
 const fs         = require('fs')
 const app        = express()
