@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser')
 const express    = require('express')
 const mysql      = require('mysql')
+const http       = require('http')
 const fs         = require('fs')
 const app        = express()
 const port       = 9001
@@ -9,7 +10,7 @@ const port       = 9001
 app.use(express.static(__dirname + '/public'))
 
 app.get('/', (req, res) => {
-    fs.readFile('./index.html', 'utf-8', (error, data) => {
+    fs.readFile('./public/views/index.html', 'utf-8', (error, data) => {
         if (error) {
             try {
                 res.sendStatus(500).send('Oops! Something Went wrong!')
