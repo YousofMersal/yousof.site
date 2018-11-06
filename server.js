@@ -8,5 +8,5 @@ app.get('/', function(req, res) {
 })
 
 app.listen(process.env.PORT || 9001, () => {
-    console.log('Tets is up')
+    console.log('Koala Keeper is up and running')
 })
