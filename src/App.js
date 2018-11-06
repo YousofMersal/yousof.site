@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import MovieCardList from './components/MovieCardList.jsx'
 import SearchBar from './components/SearchBar.jsx'
 import movieFetch from './components/MovieFetch'
-import './style.css'
 
 class App extends Component {
     constructor(props) {
@@ -29,7 +28,6 @@ class App extends Component {
         })
         movieFetch(searchTerm)
             .then(response => this.setState({ movies: response, loading: false }))
-            .then(response => console.log(response))
             .catch(error => console.log(error))
     }
 
@@ -42,11 +40,11 @@ class App extends Component {
     render() {
         return (
             <div>
-                <h1>Placeholder title</h1>
+                <h1 className="title">Placeholder title</h1>
                 <SearchBar
                     type="text"
                     className="inpField"
-                    placeholder="GitHub User"
+                    placeholder="Movie Search"
                     passedFunction={this.handleInpChange}
                     value={this.state.searchTerm}
                     keypress={this.onKeyPress}

@@ -8,18 +8,13 @@ export default class MovieCardList extends Component {
         } else {
             return (
                 <ul className="moviecardlist">
-                    {this.props.data.map(
-                        (item, i) => (
-                            console.log(item),
-                            (
-                                <MovieCard
-                                    img={item.Poster}
-                                    name={item.Title}
-                                    key={item.imdbID}
-                                />
-                            )
-                        )
-                    )}
+                    {this.props.data.map((item, i) => (
+                        <MovieCard
+                            img={item.Poster}
+                            name={item.Title}
+                            key={item.imdbID}
+                        />
+                    ))}
                 </ul>
             )
         }

@@ -12,6 +12,7 @@
     margin-top: 25px;
     text-align: center;
 }
+
 .inpField {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: #fdfdfd;
@@ -52,7 +53,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.usercardlist {
+.moviecardlist {
     display: flex;
     flex-wrap: wrap;
     width: 85%;
@@ -61,7 +62,7 @@
     overflow: none;
 }
 
-.listitem {
+.moviecard {
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border: #000;
