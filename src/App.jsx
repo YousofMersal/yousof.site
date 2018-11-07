@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MovieCardList from './components/MovieCardList.jsx'
 import SearchBar from './components/SearchBar.jsx'
 import movieFetch from './components/MovieFetch'
+import CssLoader from './components/CssLoader.jsx'
 
 class App extends Component {
     constructor(props) {
@@ -49,6 +50,7 @@ class App extends Component {
                     value={this.state.searchTerm}
                     keypress={this.onKeyPress}
                 />
+                {this.state.loading && <CssLoader />}
                 <MovieCardList data={this.state.movies} />
             </div>
         )
