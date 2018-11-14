@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import MovieCardList from '../components/MovieCardList.jsx'
 import SearchBar from '../components/SearchBar.jsx'
-import movieFetch from '../components/MovieFetch'
+import { getMovie } from '../components/MovieFetch'
 import CssLoader from '../components/CssLoader.jsx'
 
-class App extends Component {
+export default class Landing extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -27,7 +27,7 @@ class App extends Component {
       searchTerm: '',
       loading: true
     })
-    movieFetch(searchTerm)
+    getMovie(searchTerm)
       .then(response => this.setState({ movies: response, loading: false }))
       .catch(error => console.log(error))
   }
@@ -56,5 +56,3 @@ class App extends Component {
     )
   }
 }
-
-export default App
