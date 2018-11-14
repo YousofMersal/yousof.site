@@ -1,158 +1,194 @@
 * {
-    appearance: none;
-    font-family: 'Raleway', sans-serif;
-    transition: all 450ms cubic-bezier(0.24, 1.42, 0.24, 1.43);
-    text-decoration: none;
+  appearance: none;
+  font-family: 'Raleway', sans-serif;
+  transition: all 450ms cubic-bezier(0.24, 1.42, 0.24, 1.43);
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 .title {
-    width: 60%;
-    margin: 0 auto;
-    margin-bottom: 30px;
-    margin-top: 25px;
-    text-align: center;
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 25px;
+  text-align: center;
 }
 
 .inpField {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    background-color: #fdfdfd;
-    border: none;
-    display: block;
-    text-align: center;
-    width: 15%;
-    padding: 12px 20px;
-    margin: 12px auto;
-    box-sizing: border-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #fdfdfd;
+  border: none;
+  display: block;
+  text-align: center;
+  width: 15%;
+  padding: 12px 20px;
+  margin: 12px auto;
+  box-sizing: border-box;
 }
 
 [placeholder]:focus::-webkit-input-placeholder {
-    transition: opacity 0.3s 0.1s ease;
-    opacity: 0;
+  transition: opacity 0.3s 0.1s ease;
+  opacity: 0;
 }
 
 .inpField:focus {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    background-color: #fdfdfd;
-    width: 40%;
-    text-align: center;
-    outline: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #fdfdfd;
+  width: 40%;
+  text-align: center;
+  outline: none;
 }
 .button {
-    padding: 8px 8px;
-    margin: 0 auto;
-    display: block;
-    outline: none;
-    border: #fdfdfd;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  padding: 8px 8px;
+  margin: 0 auto;
+  display: block;
+  outline: none;
+  border: #fdfdfd;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 .button:hover {
-    padding: 8px 8px;
-    margin: 0 auto;
-    display: block;
-    border: #fdfdfd;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 8px 8px;
+  margin: 0 auto;
+  display: block;
+  border: #fdfdfd;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .moviecardlist {
-    display: flex;
-    flex-wrap: wrap;
-    width: 85%;
-    margin: 50px auto;
-    list-style-type: none;
-    overflow: none;
+  display: flex;
+  flex-wrap: wrap;
+  width: 85%;
+  margin: 50px auto;
+  list-style-type: none;
+  overflow: none;
 }
 
 .moviecard {
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border: #000;
+  margin: 10px 10px;
+  padding: 10px 15px;
+  text-align: center;
+}
+.focusmoviecard {
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 30%;
+  border: #000;
+  margin: 10vh auto;
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.focusmoviecard img {
+  max-width: 550px;
+  height: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .focusmoviecard {
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 85%;
     border: #000;
-    margin: 10px 10px;
+    margin: 10vh auto;
     padding: 10px 15px;
     text-align: center;
+  }
+
+  .focusmoviecard img {
+    max-width: 350px;
+    height: auto;
+  }
 }
 
 .lds-roller {
-    display: block;
-    position: relative;
-    width: 64px;
-    height: 64px;
-    margin: 15px auto;
+  display: block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin: 15px auto;
 }
 .lds-roller div {
-    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    transform-origin: 32px 32px;
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 32px 32px;
 }
 .lds-roller div:after {
-    content: ' ';
-    display: block;
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgb(109, 109, 109);
-    margin: -3px 0 0 -3px;
+  content: ' ';
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(109, 109, 109);
+  margin: -3px 0 0 -3px;
 }
 .lds-roller div:nth-child(1) {
-    animation-delay: -0.036s;
+  animation-delay: -0.036s;
 }
 .lds-roller div:nth-child(1):after {
-    top: 50px;
-    left: 50px;
+  top: 50px;
+  left: 50px;
 }
 .lds-roller div:nth-child(2) {
-    animation-delay: -0.072s;
+  animation-delay: -0.072s;
 }
 .lds-roller div:nth-child(2):after {
-    top: 54px;
-    left: 45px;
+  top: 54px;
+  left: 45px;
 }
 .lds-roller div:nth-child(3) {
-    animation-delay: -0.108s;
+  animation-delay: -0.108s;
 }
 .lds-roller div:nth-child(3):after {
-    top: 57px;
-    left: 39px;
+  top: 57px;
+  left: 39px;
 }
 .lds-roller div:nth-child(4) {
-    animation-delay: -0.144s;
+  animation-delay: -0.144s;
 }
 .lds-roller div:nth-child(4):after {
-    top: 58px;
-    left: 32px;
+  top: 58px;
+  left: 32px;
 }
 .lds-roller div:nth-child(5) {
-    animation-delay: -0.18s;
+  animation-delay: -0.18s;
 }
 .lds-roller div:nth-child(5):after {
-    top: 57px;
-    left: 25px;
+  top: 57px;
+  left: 25px;
 }
 .lds-roller div:nth-child(6) {
-    animation-delay: -0.216s;
+  animation-delay: -0.216s;
 }
 .lds-roller div:nth-child(6):after {
-    top: 54px;
-    left: 19px;
+  top: 54px;
+  left: 19px;
 }
 .lds-roller div:nth-child(7) {
-    animation-delay: -0.252s;
+  animation-delay: -0.252s;
 }
 .lds-roller div:nth-child(7):after {
-    top: 50px;
-    left: 14px;
+  top: 50px;
+  left: 14px;
 }
 .lds-roller div:nth-child(8) {
-    animation-delay: -0.288s;
+  animation-delay: -0.288s;
 }
 .lds-roller div:nth-child(8):after {
-    top: 45px;
-    left: 10px;
+  top: 45px;
+  left: 10px;
 }
 @keyframes lds-roller {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

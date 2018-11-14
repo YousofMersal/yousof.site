@@ -12,8 +12,10 @@ export default class MovieCard extends Component {
     return (
       <div className="moviecard">
         <li>
-          <p>{this.props.name}</p>
-          <img src={this.checkIfImage(this.props.img)} alt="None available" />
+          <a href={`/movie/${this.props.id}`}>
+            <p>{this.props.name}</p>
+            <img src={this.checkIfImage(this.props.img)} alt="None available" />
+          </a>
         </li>
       </div>
     )

@@ -9,7 +9,12 @@ export default class MovieCardList extends Component {
       return (
         <ul className="moviecardlist">
           {this.props.data.map(item => (
-            <MovieCard img={item.Poster} name={item.Title} key={item.imdbID} />
+            <MovieCard
+              img={item.Poster}
+              name={item.Title}
+              key={item.imdbID}
+              id={item.imdbID}
+            />
           ))}
         </ul>
       )

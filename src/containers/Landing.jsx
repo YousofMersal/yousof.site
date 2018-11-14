@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import MovieCardList from '../components/MovieCardList.jsx'
-import SearchBar from '../components/SearchBar.jsx'
-import { getMovie } from '../components/MovieFetch'
-import CssLoader from '../components/CssLoader.jsx'
+import MovieCardList from '../react-components/MovieCardList.jsx'
+import SearchBar from '../react-components/SearchBar.jsx'
+import { getMovie } from '../react-components/MovieFetch'
+import CssLoader from '../react-components/CssLoader.jsx'
 
 export default class Landing extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ export default class Landing extends Component {
   render() {
     return (
       <div>
-        <h1 className="title">Placeholder title</h1>
+        <h1 className="title">Koala Keeper</h1>
         <SearchBar
           type="text"
           className="inpField"

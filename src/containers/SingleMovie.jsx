@@ -1,27 +1,31 @@
 import React, { Component } from 'react'
-import { getSingleMovie } from '../components/MovieFetch'
+import { getSingleMovie } from '../react-components/MovieFetch'
+import FocusMovieCard from '../react-components/FocusMovieCard'
 
 export default class Movie extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      movieInfo: '',
-      loading: false
+      movieInfo: ''
     }
   }
   componentDidMount() {
-    getSingleMovie(this.props.match.params.id).then(response =>
-      this.setState({
-        movieInfo: response,
-        loading: false
-      }).catch(error => console.error(error))
-    )
+    getSingleMovie(this.props.match.params.id)
+      .then(response => this.setState({ movieInfo: response }))
+      .catch(error => console.error(error))
   }
   render() {
     return (
-      <div>
-        <h1>test</h1>
-      </div>
+      <FocusMovieCard
+        img={this.state.movieInfo.Poster}
+        metascore={this.state.movieInfo.Metascore}
+        name={this.state.movieInfo.Title}
+        runtime={this.state.movieInfo.Runtime}
+        release={this.state.movieInfo.Released}
+        rating={this.state.movieInfo.Rated}
+        director={this.state.movieInfo.Director}
+        production={this.state.movieInfo.Production}
+      />
     )
   }
 }
