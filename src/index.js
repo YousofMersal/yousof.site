@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './containers/App.jsx'
+import MyRoutes from './Router.jsx'
 import './style.css'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<MyRoutes />, document.getElementById('root'))
