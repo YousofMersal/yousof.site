@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class MovieCard extends Component {
   checkIfImage(img) {
@@ -12,10 +13,10 @@ export default class MovieCard extends Component {
     return (
       <div className="moviecard">
         <li>
-          <a href={`/movie/${this.props.id}`}>
+          <Link to={`/movie/${this.props.id}`}>
             <p>{this.props.name}</p>
             <img src={this.checkIfImage(this.props.img)} alt="None available" />
-          </a>
+          </Link>
         </li>
       </div>
     )
