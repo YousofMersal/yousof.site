@@ -7,9 +7,8 @@ export default class NavBar extends Component {
       <nav className="nav">
         <Link to="/">
           <img className="navlogo" src={require('./assets/koala.svg')} alt="" />
-          <Link to="/">Home</Link>
-          <Link to="/profile">Profile</Link>
         </Link>
+        <Link to="/profile">Profile</Link>
       </nav>
     )
   }
