@@ -85,7 +85,7 @@ a {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 30%;
   border: #000;
-  margin: 10vh auto;
+  margin: 8vh auto;
   padding: 10px 15px;
   text-align: center;
 }
@@ -95,17 +95,25 @@ a {
   height: auto;
 }
 
+.nav {
+  background-color: #f0f0f0;
+  margin: 0 auto;
+}
+
 .navlogo {
+  margin-left: 10px;
   max-width: 50px;
 }
 
-.nav {
-  background-color: f0f0f0;
+.nav-links {
+  display: inline-flex;
+  margin: 19px auto;
+  float: right;
 }
 
-.nav-links {
-  display: block;
-  float: right;
+.nav-links a {
+  padding-left: 1px;
+  padding-right: 4px;
 }
 
 @media only screen and (max-width: 600px) {

@@ -10,6 +10,7 @@ export default class NavBar extends Component {
         </Link>
         <div className="nav-links">
           <Link to="/profile">Profile</Link>
+          <Link to="/tests">Test</Link>
         </div>
       </nav>
     )
