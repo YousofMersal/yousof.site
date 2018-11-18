@@ -10,6 +10,11 @@ a {
   text-decoration: inherit;
 }
 
+.nomovies {
+  text-align: center;
+  margin: 25px auto;
+}
+
 .title {
   width: 60%;
   margin: 0 auto;
@@ -92,6 +97,15 @@ a {
 
 .navlogo {
   max-width: 50px;
+}
+
+.nav {
+  background-color: f0f0f0;
+}
+
+.nav-links {
+  display: block;
+  float: right;
 }
 
 @media only screen and (max-width: 600px) {
