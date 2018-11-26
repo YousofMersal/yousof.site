@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { getSingleMovie } from '../react-components/MovieFetch'
-import FocusMovieCard from '../react-components/FocusMovieCard'
+import { getSingleMovie } from '../components/MovieFetch'
+import FocusMovieCard from '../components/FocusMovieCard'
 
 export default class Movie extends Component {
   constructor(props) {
