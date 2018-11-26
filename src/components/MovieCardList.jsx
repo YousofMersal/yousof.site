@@ -7,7 +7,7 @@ export default class MovieCardList extends Component {
       return <h2 className="nomovies"> You need to search for a movie </h2>
     } else {
       return (
-        <ul className="moviecardlist">
+        <div className="moviecardlist">
           {this.props.data.map(item => (
             <MovieCard
               img={item.Poster}
@@ -16,7 +16,7 @@ export default class MovieCardList extends Component {
               id={item.imdbID}
             />
           ))}
-        </ul>
+        </div>
       )
     }
   }

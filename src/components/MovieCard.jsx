@@ -12,12 +12,10 @@ export default class MovieCard extends Component {
   render() {
     return (
       <div className="moviecard">
-        <li>
-          <Link to={`/movie/${this.props.id}`}>
-            <p>{this.props.name}</p>
-            <img src={this.checkIfImage(this.props.img)} alt="None available" />
-          </Link>
-        </li>
+        <Link to={`/movie/${this.props.id}`}>
+          <p>{this.props.name}</p>
+          <img src={this.checkIfImage(this.props.img)} alt="None available" />
+        </Link>
       </div>
     )
   }
