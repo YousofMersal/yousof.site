@@ -1,4 +1,5 @@
 require('dotenv').config()
+// const mongoose = require('mongoose')
 const Axios = require('axios')
 const apikey = process.env.apikey
 const express = require('express')
@@ -9,6 +10,12 @@ const buildPath = path.join(__dirname, '../../build')
 const port = process.env.PORT || 9001
 app.use(bodyParser.json())
 app.use(express.static(buildPath))
+
+// mongoose.connect(
+//   process.env.MONGODB_URI,
+//   { useNewUrlParser: true }
+// )
+
 app.post('/api/getmultiple', (req, res) => {
   const searchTerm = req.body.data
   Axios.get(`http://private.omdbapi.com/?s=${searchTerm}&apikey=${apikey}`).then(
