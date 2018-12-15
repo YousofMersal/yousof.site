@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getSingleMovie } from '../MovieFetch'
+import { getSingleMovie } from '../api/MovieFetch'
 import FocusMovieCard from '../components/FocusMovieCard'
 
 export default class Movie extends Component {

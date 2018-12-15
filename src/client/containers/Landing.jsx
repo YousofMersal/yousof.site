@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import MovieCardList from '../components/MovieCardList.jsx'
 import SearchBar from '../components/SearchBar.jsx'
-import { getMovies } from '../MovieFetch'
+import { getMovies } from '../api/MovieFetch'
 import CssLoader from '../components/CssLoader.jsx'
 
 export default class Landing extends Component {
