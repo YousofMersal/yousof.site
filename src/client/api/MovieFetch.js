@@ -21,8 +21,7 @@ async function getMovies(search) {
       console.log(err.config)
     }
   )
-  return await response.data.Search
-  //   `http://private.omdbapi.com/?s=${search}&apikey=${apikey}`
+  return await response.data.results
 }
 
 async function getSingleMovie(id) {
