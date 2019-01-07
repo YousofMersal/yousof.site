@@ -41,11 +41,11 @@ export default class Landing extends Component {
   render() {
     return (
       <div>
-        <h1 className="title">Koala Keeper</h1>
+        <h1 className='title'>Koala Keeper</h1>
         <SearchBar
-          type="text"
-          className="inpField"
-          placeholder="Movie Search"
+          type='text'
+          className='inpField'
+          placeholder='Movie Search'
           passedFunction={this.handleInpChange}
           value={this.state.searchTerm}
           keypress={this.onKeyPress}

@@ -21,7 +21,7 @@ app.post('/api/getmultiple', (req, res) => {
   Axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=en-US&query=${searchTerm}`
   ).then(response => {
-    console.log(response.data)
+    // console.log(response.data)
     res.send(response.data)
   })
 })

@@ -10,11 +10,11 @@ export default class MovieCard extends Component {
   }
   render() {
     return (
-      <div className="focusmoviecard">
+      <div className='focusmoviecard'>
         <h2>
           <strong>{this.props.name}</strong>
         </h2>
-        <img src={this.checkIfImage(this.props.img)} alt="None available" />
+        <img src={this.checkIfImage(this.props.img)} alt='None available' />
         <p>Runtime: {this.props.runtime}</p>
         <p>
           Metascore: <strong> {this.props.metascore} </strong>
