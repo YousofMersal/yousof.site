@@ -10,7 +10,7 @@ export default class MyRoutes extends Component {
       <Router>
         <div>
           <Nav />
-          <Route exact path='/movie/:id' component={SingleMovie} />
+          <Route path='/movie/:id' component={SingleMovie} />
           <Route exact path='/' component={Landing} />
         </div>
       </Router>

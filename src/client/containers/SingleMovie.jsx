@@ -9,11 +9,13 @@ export default class Movie extends Component {
       movieInfo: ''
     }
   }
+
   componentDidMount() {
     getSingleMovie(this.props.match.params.id)
       .then(response => this.setState({ movieInfo: response }))
       .catch(error => console.error(error))
   }
+
   render() {
     return (
       <FocusMovieCard
