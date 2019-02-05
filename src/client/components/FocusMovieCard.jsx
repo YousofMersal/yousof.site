@@ -14,15 +14,12 @@ export default class MovieCard extends Component {
         <h2>
           <strong>{this.props.name}</strong>
         </h2>
+        <p>
+          <strong> {this.props.tagline} </strong>
+        </p>
         <img src={this.checkIfImage(this.props.img)} alt='None available' />
         <p>Runtime: {this.props.runtime}</p>
-        <p>
-          Metascore: <strong> {this.props.metascore} </strong>
-        </p>
         <p>Released: {this.props.release} </p>
-        <p>Age rating:  {this.props.rating}</p>
-        <p>Director:  {this.props.director}</p>
-        <p>Production:  {this.props.production}</p>
       </div>
     )
   }
