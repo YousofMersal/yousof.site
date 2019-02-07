@@ -1,5 +1,5 @@
 import Axios from 'axios'
-
+const apikey = process.env.REACT_APP_APIKEY
 const errFunc = error => {
   if (error.response) {
     // The request was made and the server responded with a status code
@@ -20,9 +20,7 @@ const errFunc = error => {
 async function getMovies(search) {
   try {
     const res = await Axios.get(
-      `https://api.themoviedb.org/3/search/movie?api_key=${
-        process.env.REACT_APP_APIKEY
-      }&language=en-US&query=${search}`
+      `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=en-US&query=${search}`
     )
     return await res.data.results
   } catch (err) {
@@ -32,9 +30,7 @@ async function getMovies(search) {
 
 async function getSingleMovie(search) {
   const res = await Axios.get(
-    `https://api.themoviedb.org/3/movie/${search}?api_key=${
-      process.env.REACT_APP_APIKEY
-    }&language=en-US`
+    `https://api.themoviedb.org/3/movie/${search}?api_key=${apikey}&language=en-US`
   )
   return res.data
 }
