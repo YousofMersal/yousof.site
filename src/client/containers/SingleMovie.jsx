@@ -19,14 +19,11 @@ export default class Movie extends Component {
   render() {
     return (
       <FocusMovieCard
-        img={this.state.movieInfo.Poster}
-        metascore={this.state.movieInfo.Metascore}
-        name={this.state.movieInfo.Title}
-        runtime={this.state.movieInfo.Runtime}
-        release={this.state.movieInfo.Released}
-        rating={this.state.movieInfo.Rated}
-        director={this.state.movieInfo.Director}
-        production={this.state.movieInfo.Production}
+        img={`https://image.tmdb.org/t/p/w342//${this.state.movieInfo.poster_path}`}
+        tagline={this.state.movieInfo.tagline}
+        name={this.state.movieInfo.title}
+        runtime={this.state.movieInfo.runtime}
+        release={this.state.movieInfo.release_date}
       />
     )
   }

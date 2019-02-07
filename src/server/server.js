@@ -33,10 +33,12 @@ app.post('/api/getmultiple', (req, res) => {
   const searchTerm = req.body.data
   Axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=en-US&query=${searchTerm}`
-  ).then(response => {
-    // console.log(response.data)
-    res.send(response.data)
-  })
+  )
+    .then(response => {
+      // console.log(response.data)
+      res.send(response.data)
+    })
+    .catch(err => console.log(err))
 })
 */
 
