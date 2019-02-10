@@ -5,12 +5,21 @@ import SingleMovie from './containers/SingleMovie'
 import Nav from './components/Nav'
 
 export default class MyRoutes extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLogedin: false
+    }
+  }
+
+  componentDidMount() {}
+
   render() {
     return (
       <Router>
         <div>
           <Nav />
-          <Route path='/movie/:id' component={SingleMovie} />
+          <Route exact path='/movie/:id' component={SingleMovie} />
           <Route exact path='/' component={Landing} />
         </div>
       </Router>
