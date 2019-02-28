@@ -1,5 +1,5 @@
 import Axios from 'axios'
-
+const apikey = process.env.REACT_APP_APIKEY
 const errFunc = error => {
   if (error.response) {
     // The request was made and the server responded with a status code
