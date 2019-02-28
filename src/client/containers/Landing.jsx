@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import MovieCardList from '../components/MovieCardList.jsx'
 import SearchBar from '../components/SearchBar.jsx'
 import { getMovies } from '../api/MovieFetch'
-import CssLoader from '../components/CssLoader.jsx'
+import Spinner from '../components/Spinner.jsx'
 
 export default class Landing extends Component {
   constructor(props) {
@@ -50,7 +50,7 @@ export default class Landing extends Component {
           value={this.state.searchTerm}
           keypress={this.onKeyPress}
         />
-        {this.state.loading && <CssLoader />}
+        {this.state.loading && <Spinner />}
         <MovieCardList data={this.state.movies} />
       </div>
     )

@@ -18,7 +18,6 @@ const job = new CronJob('*/4 * * * * *', () => {
   Axios.get(
     'https://api.themoviedb.org/3/configuration?api_key=d65f7650048ab646ecf08931d26d9be4'
   ).then(res => (movieConfig = res))
-  // console.log(movieConfig)
 })
 job.start()
 // mongoose.connect(
@@ -26,30 +25,25 @@ job.start()
 //   { useNewUrlParser: true }
 // )
 
-/*
-This has been moved to the client
-
 app.post('/api/getmultiple', (req, res) => {
+  console.log(req.data)
   const searchTerm = req.body.data
   Axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=en-US&query=${searchTerm}`
   )
     .then(response => {
-      // console.log(response.data)
       res.send(response.data)
     })
     .catch(err => console.log(err))
 })
-*/
 
 app.post('/api/getsingle', (req, res) => {
   const id = req.body.data
-  console.log(id)
-  // Axios.get(`https://api.themoviedb.org/3/*********/?api_key=${apikey}`).then(
-  //   response => {
-  //     res.send(response.data)
-  //   }
-  // )
+  Axios.get(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}&language=en-US`
+  ).then(response => {
+    res.send(response.data)
+  })
 })
 
 app.get('/*', function(req, res) {
@@ -58,5 +52,5 @@ app.get('/*', function(req, res) {
 })
 
 app.listen(port, () => {
-  console.log('Koala Keeper is up and running')
+  console.log('Koala Keeper is up and running on port: ' + port)
 })

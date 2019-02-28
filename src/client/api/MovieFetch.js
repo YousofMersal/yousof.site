@@ -18,19 +18,15 @@ const errFunc = error => {
 }
 
 async function getMovies(search) {
-  try {
-    const res = await Axios.get(
-      `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=en-US&query=${search}`
-    )
-    return await res.data.results
-  } catch (err) {
-    errFunc(err)
-  }
+  const response = await Axios.post('/api/getmultiple', { data: search }).catch(
+    err => errFunc(err)
+  )
+  return await response.data.results
 }
 
-async function getSingleMovie(search) {
-  const res = await Axios.get(
-    `https://api.themoviedb.org/3/movie/${search}?api_key=${apikey}&language=en-US`
+async function getSingleMovie(id) {
+  const res = await Axios.post('/api/getsingle', { data: id }).catch(err =>
+    errFunc(err)
   )
   return res.data
 }
