@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+mongoose
+  .connect('mongodb://localhost:27017/yousof', { useNewUrlParser: true })
+  .then(() => console.log('Db connected'))
+  .catch(err => console.log(err))
+
 const userDataSchema = new Schema(
   {
     name: { type: String, require: true },
@@ -9,12 +14,9 @@ const userDataSchema = new Schema(
     age: { type: Number, min: 13 },
     enableAdult: { type: Boolean, default: false }
   },
-  { collection: 'user-data' }
+  { collection: 'userdata' }
 )
 
-const UserData = mongoose.model('UserData', userDataSchema)
+const User = mongoose.model('UserData', userDataSchema)
 
-mongoose
-  .connect('mongodb://localhost:27017/yousof', { useNewUrlParser: true })
-  .then(() => console.log('Db connected'))
-  .catch(err => console.log(err))
+module.exports = User

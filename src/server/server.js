@@ -1,5 +1,7 @@
 require('dotenv').config()
 // const mongoose = require('mongoose')
+const passportsetup = require('./auth/passport-setup')
+const passport = require('passport')
 const Axios = require('axios')
 const apikey = process.env.APIKEY
 const express = require('express')
@@ -8,9 +10,15 @@ const bodyParser = require('body-parser')
 const app = express()
 const buildPath = path.join(__dirname, '../../build')
 const port = process.env.PORT || 9001
+const authrouter = require('./auth/router')
 var CronJob = require('cron').CronJob
+app.use('/user', authrouter.router)
 app.use(bodyParser.json())
 app.use(express.static(buildPath))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 let movieConfig = Axios.get(
   'https://api.themoviedb.org/3/configuration?api_key=d65f7650048ab646ecf08931d26d9be4'
 )
@@ -26,7 +34,6 @@ job.start()
 // )
 
 app.post('/api/getmultiple', (req, res) => {
-  console.log(req.data)
   const searchTerm = req.body.data
   Axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=en-US&query=${searchTerm}`
