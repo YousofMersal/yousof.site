@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Landing from './containers/Landing'
 import SingleMovie from './containers/SingleMovie'
 import Nav from './components/Nav'
+import Login from './components/user/login'
 
 export default class MyRoutes extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLogedin: false
+      isLoggedin: false
     }
   }
 
@@ -18,9 +19,10 @@ export default class MyRoutes extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          <Nav isLoggedin={this.state.isLoggedin} />
           <Route exact path='/movie/:id' component={SingleMovie} />
           <Route exact path='/' component={Landing} />
+          <Route exact path='/login' component={Login} />
         </div>
       </Router>
     )
