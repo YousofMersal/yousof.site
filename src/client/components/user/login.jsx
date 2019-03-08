@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
+import { LoginCheck } from '../../api/UserAPI'
 
 export default class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
       UserName: '',
-      Email: '',
       Password: '',
       remember: true
     }
@@ -21,21 +21,24 @@ export default class Login extends Component {
     })
   }
 
+  handleSubmit = event => {
+    const userinfo = { ...this.state }
+    LoginCheck(userinfo)
+    event.preventDefault()
+  }
+
   render() {
     return (
       <div>
-        <form action='/user/login' method='post'>
-          <div className='avatarCont'>
-            <img src='default.png' alt='Avatar' className='avatar' />
-          </div>
-
+        <form onSubmit={this.handleSubmit}>
           <div className='formCont'>
-            <label htmlFor='uname'>User Name</label>
+            <label htmlFor='UserName'>User Name</label>
             <input
               type='text'
-              name='uname'
+              name='UserName'
               placeholder='User Name'
-              id='uname'
+              value={this.state.UserName}
+              id='UserName'
               onChange={this.handleInpChange}
             />
 
@@ -43,8 +46,9 @@ export default class Login extends Component {
             <input
               type='password'
               placeholder='Password'
-              name='pass'
-              id='password'
+              name='Password'
+              id='Password'
+              value={this.state.Password}
               onChange={this.handleInpChange}
             />
 
