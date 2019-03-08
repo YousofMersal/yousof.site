@@ -33,6 +33,8 @@ job.start()
 //   { useNewUrlParser: true }
 // )
 
+app.use('/auth', authrouter.router)
+
 app.post('/api/getmultiple', (req, res) => {
   const searchTerm = req.body.data
   Axios.get(
@@ -48,9 +50,11 @@ app.post('/api/getsingle', (req, res) => {
   const id = req.body.data
   Axios.get(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}&language=en-US`
-  ).then(response => {
-    res.send(response.data)
-  })
+  )
+    .then(response => {
+      res.send(response.data)
+    })
+    .catch(err => console.log('/api/getsingle/ failed \n' + err))
 })
 
 app.get('/*', function(req, res) {

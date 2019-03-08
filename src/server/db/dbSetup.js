@@ -14,7 +14,7 @@ const userDataSchema = new Schema(
     age: { type: Number, min: 13 },
     enableAdult: { type: Boolean, default: false }
   },
-  { collection: 'userdata' }
+  { collection: 'users' }
 )
 
 const User = mongoose.model('UserData', userDataSchema)
