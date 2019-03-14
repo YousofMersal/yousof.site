@@ -6,10 +6,11 @@ export default class InputField extends Component {
       <div>
         <input
           type={this.props.type}
+          name={this.props.name}
           className={this.props.className}
           placeholder={this.props.placeholder}
-          value={this.props.value}
-          onChange={this.props.passedfunc}
+          value={this.props.val}
+          onChange={this.props.pasedfunc}
           onKeyPress={e => this.props.onKeyPress(e)}
         />
       </div>
