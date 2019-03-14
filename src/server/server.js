@@ -15,7 +15,6 @@ var CronJob = require('cron').CronJob
 app.use('/user', authrouter.router)
 app.use(bodyParser.json())
 app.use(express.static(buildPath))
-
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -25,7 +24,9 @@ let movieConfig = Axios.get(
 const job = new CronJob('*/4 * * * * *', () => {
   Axios.get(
     'https://api.themoviedb.org/3/configuration?api_key=d65f7650048ab646ecf08931d26d9be4'
-  ).then(res => (movieConfig = res))
+  )
+    .then(res => (movieConfig = res))
+    .catch(err => console.log(err))
 })
 job.start()
 // mongoose.connect(
