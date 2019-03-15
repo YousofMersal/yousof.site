@@ -1,28 +1,19 @@
 const bcrypt = require('bcryptjs')
 
-const hash = []
-
 async function passhash(password) {
   const salt = await bcrypt.genSalt(10)
   const hash = await bcrypt.hash(password, salt)
   return hash
 }
 
-async function validatePassword(obj) {
+async function validatePassword(password, hash) {
   try {
-    console.log(await bcrypt.compare(obj.pass, obj.hash).then(res => res))
+    const bool = await bcrypt.compare(password, hash).then(res => res)
+    return bool
   } catch (err) {
-    console.log(err)
+    console.log('error comparin ' + err)
   }
-  // bcrypt.compare(obj.pass, obj.hash).then(res => res)
 }
-
-// passhash('123')
-//   .then(res => hash.push(res))
-//   .then(() => {
-//     console.log(hash[0])
-//     bcrypt.compare('joe', hash[0]).then(res => console.log(res))
-//   })
 
 module.exports = {
   passhash,
