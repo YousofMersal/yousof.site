@@ -4,6 +4,7 @@ import Landing from './containers/Landing'
 import SingleMovie from './containers/SingleMovie'
 import Nav from './components/Nav'
 import Login from './components/user/login'
+// import { LoginCheck } from './api/UserAPI'
 
 export default class MyRoutes extends Component {
   constructor(props) {
@@ -13,7 +14,9 @@ export default class MyRoutes extends Component {
     }
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    // LoginCheck().then(res => console.log(res))
+  }
 
   render() {
     return (

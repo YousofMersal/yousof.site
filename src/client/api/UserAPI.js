@@ -9,4 +9,14 @@ async function LoginCheck(data) {
   }
 }
 
-export { LoginCheck }
+async function isloggedin() {
+  try {
+    const res = await Axios.post('/auth/isloggedin')
+    console.log(res)
+    return res
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export { LoginCheck, isloggedin }

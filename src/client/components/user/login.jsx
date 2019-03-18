@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import InputField from './form/InputField'
-import { LoginCheck } from '../../api/UserAPI'
+import { LoginCheck, isloggedin } from '../../api/UserAPI'
 
 export default class Login extends Component {
   constructor(props) {
@@ -11,6 +11,10 @@ export default class Login extends Component {
       remember: true,
       isValid: null
     }
+  }
+
+  handleCheck = () => {
+    isloggedin().then(res => console.log(res))
   }
 
   handleInpChange = e => {
@@ -50,6 +54,11 @@ export default class Login extends Component {
   render() {
     return (
       <div>
+        <div>
+          <button type='submit' onClick={this.handleCheck}>
+            Test longin check
+          </button>
+        </div>
         <form onSubmit={this.onSubmitClickHandler}>
           <InputField
             type='text'
@@ -74,6 +83,7 @@ export default class Login extends Component {
               onChange={this.handleInpChange}
             />
           </div>
+
           {/* <div className='formCont'>
             <label htmlFor='UserName'>User Name</label>
             <input
