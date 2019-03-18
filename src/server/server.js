@@ -2,7 +2,6 @@ require('dotenv').config()
 require('./auth/passport-setup')
 const passport = require('passport')
 const Axios = require('axios')
-const apikey = process.env.APIKEY
 const express = require('express')
 const path = require('path')
 const session = require('express-session')
@@ -11,17 +10,22 @@ const app = express()
 const buildPath = path.join(__dirname, '../../build')
 const port = process.env.PORT || 9001
 const authrouter = require('./auth/router')
-var CronJob = require('cron').CronJob
+const CronJob = require('cron').CronJob
+const apikey = process.env.APIKEY
 app.use('/user', authrouter.router)
 app.use(bodyParser.json())
 app.use(express.static(buildPath))
 const sessionOptions = {
-  maxAge: 7 * 24 * 60 * 60 * 1000,
-  secret: process.env.ENVIROMENT === 'prod' ? process.env.SECRET : false
+  cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 },
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
 }
-console.log(sessionOptions)
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  session.cookie.secure = true // serve secure cookies
+}
 app.use(session(sessionOptions))
-
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -54,7 +58,6 @@ app.post('/api/getmultiple', (req, res) => {
 })
 
 app.post('/api/getsingle', (req, res) => {
-  console.log(req.session.cookie)
   const id = req.body.data
   Axios.get(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}&language=en-US`
