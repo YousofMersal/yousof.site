@@ -4,6 +4,7 @@ import Landing from './containers/Landing'
 import SingleMovie from './containers/SingleMovie'
 import Nav from './components/Nav'
 import Login from './components/user/login'
+import SignUp from './components/user/signup'
 // import { LoginCheck } from './api/UserAPI'
 
 export default class MyRoutes extends Component {
@@ -26,6 +27,7 @@ export default class MyRoutes extends Component {
           <Route exact path='/movie/:id' component={SingleMovie} />
           <Route exact path='/' component={Landing} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={SignUp} />
         </div>
       </Router>
     )
