@@ -2,22 +2,24 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const encryption = require('../../auth/BcryptSetup')
 
-const userDataSchema = new Schema(
-  {
-    name: { type: String, require: true, unique: true },
-    password: { type: String, require: true },
-    joined: { type: Date, default: Date.now },
-    age: { type: Number, min: 13 },
-    enableAdult: { type: Boolean, default: false }
-  },
-  { collection: 'users' }
-)
+const usersSchema = new Schema({
+  username: { type: String, require: true },
+  password: { type: String, require: true },
+  joined: { type: Date, default: Date.now() },
+  age: { type: Number, min: 13 },
+  enableAdult: { type: Boolean, default: false }
+})
 
-userDataSchema.methods.validPassword = async function(info) {
+usersSchema.methods.validPassword = async function(info) {
   const bool = await encryption.validatePassword(info.password, info.hash)
   return bool
 }
 
-const User = mongoose.model('UserData', userDataSchema)
+usersSchema.statics.encryptPassword = async function(password) {
+  const res = await encryption.passhash(password)
+  return res
+}
+
+const User = mongoose.model('User', usersSchema)
 
 module.exports = User
