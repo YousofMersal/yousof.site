@@ -3,6 +3,7 @@ const LocalStrategy = require('passport-local').Strategy
 const { User } = require('../db/dbSetup')
 
 passport.serializeUser((user, done) => {
+  console.log(user.id)
   done(null, user.id)
 })
 
@@ -14,7 +15,8 @@ passport.deserializeUser((id, done) => {
 })
 
 passport.use(
-  new LocalStrategy((username, password, done) => {
+  'login',
+  new LocalStrategy({ passReqToCallback: true }, (req, username, password, done) => {
     User.findOne({ username: username }, (err, user) => {
       if (err) {
         return done(err, false, {
@@ -28,11 +30,33 @@ passport.use(
 
       user.validPassword({ password: password, hash: user.password }).then(res => {
         if (res) {
+          req.session.cookie.loggedin = true
           return done(null, user)
         } else {
-          return done(null, false, { message: 'Incorrect Password' })
+          return done(null, false, 'username already in use')
         }
       })
+    })
+  })
+)
+
+passport.use(
+  'register',
+  new LocalStrategy((username, password, done) => {
+    User.find({ username: username }, (err, user) => {
+      if (err) {
+        return done(err)
+      } else if (user.length) {
+        return done(null, false, { message: 'Name in use' })
+      } else {
+        User.encryptPassword(password)
+          .then(hash => {
+            User.create({ username: username, password: hash }).then(res =>
+              done(null, res)
+            )
+          })
+          .catch(err => console.log(err))
+      }
     })
   })
 )
