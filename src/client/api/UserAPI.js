@@ -1,8 +1,18 @@
 import Axios from 'axios'
 
-async function LoginCheck(data) {
+async function loginCheck(data) {
   try {
     const res = await Axios.post('/auth/login', { ...data })
+    return res
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+async function registerUser(data) {
+  try {
+    const res = await Axios.post('/auth/signup', { ...data })
+    console.log(res)
     return res
   } catch (err) {
     console.log(err)
@@ -12,11 +22,10 @@ async function LoginCheck(data) {
 async function isloggedin() {
   try {
     const res = await Axios.post('/auth/isloggedin')
-    console.log(res)
     return res
   } catch (err) {
     console.log(err)
   }
 }
 
-export { LoginCheck, isloggedin }
+export { loginCheck, isloggedin, registerUser }
