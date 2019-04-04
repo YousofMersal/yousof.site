@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Landing from './containers/Landing'
 import SingleMovie from './containers/SingleMovie'
 import Nav from './components/Nav'
@@ -24,10 +24,12 @@ export default class MyRoutes extends Component {
       <Router>
         <div>
           <Nav isLoggedin={this.state.isLoggedin} />
-          <Route exact path='/movie/:id' component={SingleMovie} />
-          <Route exact path='/' component={Landing} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/signup' component={SignUp} />
+          <Switch>
+            <Route exact path='/movie/:id' component={SingleMovie} />
+            <Route exact path='/' component={Landing} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={SignUp} />
+          </Switch>
         </div>
       </Router>
     )
