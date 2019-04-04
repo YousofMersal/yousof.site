@@ -3,8 +3,8 @@ const Schema = mongoose.Schema
 const encryption = require('../../auth/BcryptSetup')
 
 const usersSchema = new Schema({
-  username: { type: String, require: true },
-  password: { type: String, require: true },
+  username: { type: String, required: true, lowercase: true },
+  password: { type: String, required: true },
   joined: { type: Date, default: Date.now() },
   age: { type: Number, min: 13 },
   enableAdult: { type: Boolean, default: false }
