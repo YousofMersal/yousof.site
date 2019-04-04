@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default class NavBar extends Component {
   render() {
@@ -7,23 +7,23 @@ export default class NavBar extends Component {
 
     return (
       <nav className='nav'>
-        <Link to='/'>
+        <NavLink to='/'>
           <img className='navlogo' src={require('./assets/koala.svg')} alt='' />
-        </Link>
+        </NavLink>
         <div className='nav-links'>
           {this.props.isLoggedin ? (
-            <Link to='/profile'>Profile</Link>
+            <NavLink to='/profile'>Profile</NavLink>
           ) : (
             [
-              <Link to='/login' className='login' key='1'>
+              <NavLink to='/login' className='login' key='1'>
                 Log In
-              </Link>,
-              <Link to='/signup' className='signup' key='2'>
+              </NavLink>,
+              <NavLink to='/signup' className='signup' key='2'>
                 Sign Up
-              </Link>
+              </NavLink>
             ]
           )}
-          <Link to='/tests'>Test</Link>
+          <NavLink to='/tests'>Test</NavLink>
         </div>
       </nav>
     )
