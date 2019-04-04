@@ -25,7 +25,7 @@ router.post('/signup', (req, res) => {
     if (err) {
       res.sendStatus(500)
     } else if (user === false) {
-      res.send(info)
+      res.send(info.message)
     } else {
       res.sendStatus(201)
     }
