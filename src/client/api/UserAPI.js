@@ -12,7 +12,6 @@ async function loginCheck(data) {
 async function registerUser(data) {
   try {
     const res = await Axios.post('/auth/signup', { ...data })
-    console.log(res)
     return res
   } catch (err) {
     console.log(err)

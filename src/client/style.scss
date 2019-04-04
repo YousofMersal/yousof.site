@@ -85,6 +85,10 @@ a {
   overflow: none;
 }
 
+.isTaken {
+  border: solid red 1px;
+}
+
 .moviecard {
   box-sizing: border-box;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
