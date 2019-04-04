@@ -9,7 +9,8 @@ export default class SignUp extends Component {
       username: { val: '', isValid: null },
       password: { val: '', isValid: null },
       remember: true,
-      isValid: false
+      isTaken: false,
+      redirect: null
     }
   }
 
@@ -25,7 +26,16 @@ export default class SignUp extends Component {
         username: { val: '' },
         password: { val: '' }
       })
-      registerUser(userinfo).then(this.setState({ redirect: true, isValid: null }))
+      //Redirects user if creation of user was succesesful while settings isValid to false for css
+      registerUser(userinfo).then(res => {
+        if (res.data === 'Created') {
+          this.setState({ isTaken: false, redirect: true })
+        } else if (res.data === 'Name in use') {
+          this.setState({ isTaken: true, redirect: false })
+        } else {
+          alert('Something went wrong while creating user please try again later')
+        }
+      })
     } else {
       this.setState({ isValid: 'notValid' })
     }
@@ -51,13 +61,17 @@ export default class SignUp extends Component {
     return (
       <div>
         <form onSubmit={this.onSubmitClickHandler}>
-          <InputField
-            type='text'
-            name='username'
-            val={this.state.username.val}
-            pasedfunc={this.handleInpChange}
-            onKeyPress={this.handleKeyDown}
-          />
+          <div>
+            {this.state.isTaken ? <h3>Name is already taken</h3> : null}
+            <InputField
+              className={this.state.isTaken ? 'isTaken' : null}
+              type='text'
+              name='username'
+              val={this.state.username.val}
+              pasedfunc={this.handleInpChange}
+              onKeyPress={this.handleKeyDown}
+            />
+          </div>
           <InputField
             type='password'
             name='password'
