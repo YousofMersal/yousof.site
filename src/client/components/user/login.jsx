@@ -39,7 +39,11 @@ export default class Login extends Component {
         username: '',
         password: ''
       })
-      loginCheck(userinfo).then(this.setState({ redirect: true, isValid: null }))
+      loginCheck(userinfo)
+        .then(res => {
+          return this.setState({ redirect: true, isValid: null })
+        })
+        .catch(err => console.log(err))
     } else {
       this.setState({ isValid: 'notValid' })
     }

@@ -3,12 +3,10 @@ const LocalStrategy = require('passport-local').Strategy
 const { User } = require('../db/dbSetup')
 
 passport.serializeUser((user, done) => {
-  console.log(user.id)
   done(null, user.id)
 })
 
 passport.deserializeUser((id, done) => {
-  console.log('deserialize ' + id)
   User.findOne({ _id: id })
     .then(done(null, id))
     .catch(err => console.log(err))
@@ -30,7 +28,8 @@ passport.use(
 
       user.validPassword({ password: password, hash: user.password }).then(res => {
         if (res) {
-          req.session.cookie.loggedin = true
+          req.session.loggedin = true
+          console.log(req.session)
           return done(null, user)
         } else {
           return done(null, false, 'username already in use')
