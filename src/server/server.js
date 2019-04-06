@@ -1,32 +1,52 @@
 require('dotenv').config()
-// const mongoose = require('mongoose')
+require('./auth/passport-setup')
+const passport = require('passport')
 const Axios = require('axios')
-const apikey = process.env.APIKEY
 const express = require('express')
 const path = require('path')
+const session = require('express-session')
 const bodyParser = require('body-parser')
 const app = express()
 const buildPath = path.join(__dirname, '../../build')
 const port = process.env.PORT || 9001
-var CronJob = require('cron').CronJob
+const authrouter = require('./auth/router')
+const CronJob = require('cron').CronJob
+const apikey = process.env.APIKEY
+app.use('/user', authrouter.router)
 app.use(bodyParser.json())
 app.use(express.static(buildPath))
-let movieConfig = Axios.get(
-  'https://api.themoviedb.org/3/configuration?api_key=d65f7650048ab646ecf08931d26d9be4'
-)
-const job = new CronJob('*/4 * * * * *', () => {
-  Axios.get(
-    'https://api.themoviedb.org/3/configuration?api_key=d65f7650048ab646ecf08931d26d9be4'
-  ).then(res => (movieConfig = res))
-})
-job.start()
-// mongoose.connect(
-//   process.env.MONGODB_URI,
-//   { useNewUrlParser: true }
+const sessionOptions = {
+  cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 },
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  session.cookie.secure = true // serve secure cookies
+}
+app.use(session(sessionOptions))
+app.use(passport.initialize())
+app.use(passport.session())
+
+// let movieConfig = Axios.get(
+//   'https://api.themoviedb.org/3/configuration?api_key=d65f7650048ab646ecf08931d26d9be4'
 // )
 
+// const job = new CronJob('*/4 * * * * *', () => {
+//   Axios.get(
+//     'https://api.themoviedb.org/3/configuration?api_key=d65f7650048ab646ecf08931d26d9be4'
+//   )
+//     .then(res => {
+//       movieConfig = res
+//     })
+//     .catch(err => console.log(err))
+// })
+// job.start()
+
+app.use('/auth', authrouter.router)
+
 app.post('/api/getmultiple', (req, res) => {
-  console.log(req.data)
   const searchTerm = req.body.data
   Axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=en-US&query=${searchTerm}`
@@ -41,9 +61,11 @@ app.post('/api/getsingle', (req, res) => {
   const id = req.body.data
   Axios.get(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}&language=en-US`
-  ).then(response => {
-    res.send(response.data)
-  })
+  )
+    .then(response => {
+      res.send(response.data)
+    })
+    .catch(err => console.log('/api/getsingle/ failed \n' + err))
 })
 
 app.get('/*', function(req, res) {

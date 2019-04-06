@@ -1,16 +1,29 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default class NavBar extends Component {
   render() {
+    // console.log(this.props.isLoggedin)
+
     return (
       <nav className='nav'>
-        <Link to='/'>
+        <NavLink to='/'>
           <img className='navlogo' src={require('./assets/koala.svg')} alt='' />
-        </Link>
+        </NavLink>
         <div className='nav-links'>
-          <Link to='/profile'>Profile</Link>
-          <Link to='/tests'>Test</Link>
+          {this.props.isLoggedin ? (
+            <NavLink to='/profile'>Profile</NavLink>
+          ) : (
+            [
+              <NavLink to='/login' className='login' key='1'>
+                Log In
+              </NavLink>,
+              <NavLink to='/signup' className='signup' key='2'>
+                Sign Up
+              </NavLink>
+            ]
+          )}
+          <NavLink to='/tests'>Test</NavLink>
         </div>
       </nav>
     )

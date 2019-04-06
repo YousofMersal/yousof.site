@@ -1,5 +1,5 @@
 import Axios from 'axios'
-const apikey = process.env.REACT_APP_APIKEY
+
 const errFunc = error => {
   if (error.response) {
     // The request was made and the server responded with a status code
@@ -18,17 +18,23 @@ const errFunc = error => {
 }
 
 async function getMovies(search) {
-  const response = await Axios.post('/api/getmultiple', { data: search }).catch(
-    err => errFunc(err)
-  )
-  return await response.data.results
+  try {
+    const response = await Axios.post('/api/getmultiple', { data: search })
+
+    return await response.data.results
+  } catch (err) {
+    errFunc(err)
+  }
 }
 
 async function getSingleMovie(id) {
-  const res = await Axios.post('/api/getsingle', { data: id }).catch(err =>
+  try {
+    const res = await Axios.post('/api/getsingle', { data: id })
+
+    return res.data
+  } catch (err) {
     errFunc(err)
-  )
-  return res.data
+  }
 }
 
 // getSingleMovie('181808').then(res => console.log(res))
