@@ -5,25 +5,14 @@ import SingleMovie from './containers/SingleMovie'
 import Nav from './components/Nav'
 import Login from './components/user/login'
 import SignUp from './components/user/signup'
-// import { LoginCheck } from './api/UserAPI'
+import { connect } from 'react-redux'
 
-export default class MyRoutes extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoggedin: false
-    }
-  }
-
-  componentDidMount() {
-    // LoginCheck().then(res => console.log(res))
-  }
-
+class MyRoutes extends Component {
   render() {
     return (
       <Router>
         <div>
-          <Nav isLoggedin={this.state.isLoggedin} />
+          <Nav isLoggedin={this.props.isLoggedin} />
           <Switch>
             <Route exact path='/movie/:id' component={SingleMovie} />
             <Route exact path='/' component={Landing} />
@@ -35,3 +24,11 @@ export default class MyRoutes extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    ...state
+  }
+}
+
+export default connect(mapStateToProps)(MyRoutes)

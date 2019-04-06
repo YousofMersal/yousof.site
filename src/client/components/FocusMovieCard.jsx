@@ -8,6 +8,7 @@ export default class MovieCard extends Component {
       return img
     }
   }
+
   render() {
     return (
       <div className='focusmoviecard'>
