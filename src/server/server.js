@@ -16,14 +16,13 @@ app.use('/user', authrouter.router)
 app.use(bodyParser.json())
 app.use(express.static(buildPath))
 const sessionOptions = {
-  cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 },
+  cookie: { maxAge: 7 * 24 * 60 * 60 * 1000, secure: true },
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true
 }
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy
-  session.cookie.secure = true // serve secure cookies
 }
 app.use(session(sessionOptions))
 app.use(passport.initialize())
