@@ -79,9 +79,15 @@ app.post('/api/getsingle', (req, res) => {
 })
 
 app.get(
-  '/.well-known/acme-challenge/WSHTUpJLal8K-7Z_a4MZUIvjN147sRd-GXpUt8JGSqM',
+  '/.well-known/acme-challenge/BSQCBz9n16E_yUmwlFKGTpKTtNH-cahSCpTVDqR77aM',
   (req, res) => {
     res.send(process.env.HTTPSVAR)
+  }
+)
+app.get(
+  '/.well-known/acme-challenge/WSHTUpJLal8K-7Z_a4MZUIvjN147sRd-GXpUt8JGSqM',
+  (req, res) => {
+    res.send(process.env.HTTPSVAR2)
   }
 )
 
