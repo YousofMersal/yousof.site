@@ -1,7 +1,5 @@
 require('dotenv').config()
 require('./auth/passport-setup')
-const https = require('https')
-const fs = require('fs')
 const uuidv4 = require('uuid/v4')
 const { connection } = require('./db/dbSetup')
 const passport = require('passport')
@@ -26,35 +24,17 @@ const sessionOptions = {
   genid: req => {
     return uuidv4()
   },
-  cookie: { maxAge: 7 * 24 * 60 * 60 * 1000, secure: true },
+  cookie: { maxAge: 7 * 24 * 60 * 60 * 1000, secure: false },
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false
 }
 
-if (process.env.ENVIROMENT === 'PROD') {
-  app.set('trust proxy', 1) // trust first proxy
-}
+app.set('trust proxy') // trust first proxy
 
 app.use(session(sessionOptions))
 app.use(passport.initialize())
 app.use(passport.session())
-
-async function getCerts() {
-  if (process.env.ENVIROMENT === 'DEV') {
-    const options = {
-      cert: fs.readFileSync('/mnt/x/Documents/certbot/selfMadeCert/localhost.crt'),
-      key: fs.readFileSync('/mnt/x/Documents/certbot/selfMadeCert/localhost.key')
-    }
-    return await options
-  } else if (process.env.ENVIROMENT === 'PROD') {
-    const options = {
-      key: process.env.PRIVATE,
-      cert: process.env.ORIGIN
-    }
-    return options
-  }
-}
 
 app.use('/auth', authrouter.router)
 
@@ -85,12 +65,6 @@ app.get('/*', function(req, res) {
   res.sendFile(indexPath)
 })
 
-getCerts()
-  .then(res => {
-    https
-      .createServer(res, app)
-      .listen(port, () =>
-        console.log('Koala Keeper is up and running securly on port: ' + port)
-      )
-  })
-  .catch(err => console.log(err))
+app.listen(port, () => {
+  console.log('Koala Keeper is up and running on port: ' + port)
+})
