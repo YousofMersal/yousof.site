@@ -78,19 +78,6 @@ app.post('/api/getsingle', (req, res) => {
     .catch(err => console.log('/api/getsingle/ failed \n' + err))
 })
 
-app.get(
-  '/.well-known/acme-challenge/BSQCBz9n16E_yUmwlFKGTpKTtNH-cahSCpTVDqR77aM',
-  (req, res) => {
-    res.send(process.env.HTTPSVAR)
-  }
-)
-app.get(
-  '/.well-known/acme-challenge/WSHTUpJLal8K-7Z_a4MZUIvjN147sRd-GXpUt8JGSqM',
-  (req, res) => {
-    res.send(process.env.HTTPSVAR2)
-  }
-)
-
 app.get('/*', function(req, res) {
   const indexPath = path.join(buildPath, 'index.html')
   res.sendFile(indexPath)
