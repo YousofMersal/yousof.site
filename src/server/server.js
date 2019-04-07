@@ -1,5 +1,7 @@
 require('dotenv').config()
 require('./auth/passport-setup')
+const https = require('https')
+const fs = require('fs')
 const uuidv4 = require('uuid/v4')
 const { connection } = require('./db/dbSetup')
 const passport = require('passport')
@@ -12,7 +14,6 @@ const app = express()
 const buildPath = path.join(__dirname, '../../build')
 const port = process.env.PORT || 9001
 const authrouter = require('./auth/router')
-const CronJob = require('cron').CronJob
 const apikey = process.env.APIKEY
 const MongoStore = require('connect-mongo')(session)
 
@@ -31,7 +32,7 @@ const sessionOptions = {
   saveUninitialized: false
 }
 
-if (app.get('env') === 'production') {
+if (process.env.ENVIROMENT === 'PROD') {
   app.set('trust proxy', 1) // trust first proxy
 }
 
@@ -39,20 +40,21 @@ app.use(session(sessionOptions))
 app.use(passport.initialize())
 app.use(passport.session())
 
-// let movieConfig = Axios.get(
-//   'https://api.themoviedb.org/3/configuration?api_key=d65f7650048ab646ecf08931d26d9be4'
-// )
-
-// const job = new CronJob('*/4 * * * * *', () => {
-//   Axios.get(
-//     'https://api.themoviedb.org/3/configuration?api_key=d65f7650048ab646ecf08931d26d9be4'
-//   )
-//     .then(res => {
-//       movieConfig = res
-//     })
-//     .catch(err => console.log(err))
-// })
-// job.start()
+async function getCerts() {
+  if (process.env.ENVIROMENT === 'DEV') {
+    const options = {
+      cert: fs.readFileSync('/mnt/x/Documents/certbot/selfMadeCert/localhost.crt'),
+      key: fs.readFileSync('/mnt/x/Documents/certbot/selfMadeCert/localhost.key')
+    }
+    return await options
+  } else if (process.env.ENVIROMENT === 'PROD') {
+    const options = {
+      key: process.env.PRIVATE,
+      cert: process.env.ORIGIN
+    }
+    return options
+  }
+}
 
 app.use('/auth', authrouter.router)
 
@@ -83,6 +85,12 @@ app.get('/*', function(req, res) {
   res.sendFile(indexPath)
 })
 
-app.listen(port, () => {
-  console.log('Koala Keeper is up and running on port: ' + port)
-})
+getCerts()
+  .then(res => {
+    https
+      .createServer(res, app)
+      .listen(port, () =>
+        console.log('Koala Keeper is up and running securly on port: ' + port)
+      )
+  })
+  .catch(err => console.log(err))

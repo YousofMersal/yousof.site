@@ -2,8 +2,7 @@ const router = require('express').Router()
 const passport = require('passport')
 
 const authcheck = (req, res, next) => {
-  console.log('authcheck')
-  if (req.user) {
+  if (req.session.isLoggedIn) {
     console.log(req.session)
     next()
   } else {
