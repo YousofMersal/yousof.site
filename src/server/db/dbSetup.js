@@ -9,4 +9,6 @@ mongoose
 
 const User = require('./schemas/Users')
 
-module.exports = { User }
+const connection = mongoose.connection
+
+module.exports = { User, connection }

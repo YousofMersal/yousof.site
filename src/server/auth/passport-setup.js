@@ -28,7 +28,7 @@ passport.use(
 
       user.validPassword({ password: password, hash: user.password }).then(res => {
         if (res) {
-          req.session.loggedin = true
+          req.session.isLoggedIn = true
           console.log(req.session)
           return done(null, user)
         } else {
