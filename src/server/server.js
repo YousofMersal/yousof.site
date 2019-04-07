@@ -1,5 +1,7 @@
 require('dotenv').config()
 require('./auth/passport-setup')
+const uuidv4 = require('uuid/v4')
+const { connection } = require('./db/dbSetup')
 const passport = require('passport')
 const Axios = require('axios')
 const express = require('express')
@@ -12,18 +14,27 @@ const port = process.env.PORT || 9001
 const authrouter = require('./auth/router')
 const CronJob = require('cron').CronJob
 const apikey = process.env.APIKEY
+const MongoStore = require('connect-mongo')(session)
+
 app.use('/user', authrouter.router)
 app.use(bodyParser.json())
 app.use(express.static(buildPath))
+
 const sessionOptions = {
+  store: new MongoStore({ mongooseConnection: connection }),
+  genid: req => {
+    return uuidv4()
+  },
   cookie: { maxAge: 7 * 24 * 60 * 60 * 1000, secure: true },
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }
+
 if (app.get('env') === 'production') {
   app.set('trust proxy', 1) // trust first proxy
 }
+
 app.use(session(sessionOptions))
 app.use(passport.initialize())
 app.use(passport.session())
