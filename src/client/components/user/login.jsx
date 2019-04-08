@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import InputField from './form/InputField'
 import { loginCheck, isloggedin } from '../../api/UserAPI'
+import { Redirect } from 'react-router-dom'
 
 export default class Login extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ export default class Login extends Component {
       username: '',
       password: '',
       remember: true,
-      isValid: null
+      isValid: null,
+      redirect: null
     }
   }
 
@@ -41,7 +43,12 @@ export default class Login extends Component {
       })
       loginCheck(userinfo)
         .then(res => {
-          return this.setState({ redirect: true, isValid: null })
+          console.log(res)
+          if (res.data === 'OK') {
+            this.setState({ redirect: true })
+          } else if (res.data === 'Incorrect username.') {
+            this.setState({ isValid: 'notValid' })
+          }
         })
         .catch(err => console.log(err))
     } else {
@@ -60,6 +67,7 @@ export default class Login extends Component {
       <div>
         <div>
           <button type='submit' onClick={this.handleCheck}>
+            {this.state.redirect ? <Redirect to='/' /> : null}
             Test longin check
           </button>
         </div>
@@ -86,6 +94,9 @@ export default class Login extends Component {
               checked={this.state.remember}
               onChange={this.handleInpChange}
             />
+            {this.state.isValid === 'notValid' ? (
+              <h3>invalid username or password</h3>
+            ) : null}
           </div>
         </form>
       </div>
