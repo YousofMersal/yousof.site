@@ -4,8 +4,9 @@ const initalState = {
 
 const reducer = (state = initalState, action) => {
   if (action.type === 'USER_LOGIN') {
-    console.log('USER_LOGIN hit')
-    return state
+    const newState = Object.assign({}, state)
+    newState.isLoggedIn = action.value
+    return newState
   }
 
   return state
