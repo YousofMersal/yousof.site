@@ -27,4 +27,13 @@ async function isloggedin() {
   }
 }
 
-export { loginCheck, isloggedin, registerUser }
+async function logOut() {
+  try {
+    const res = await Axios.get('/auth/logout')
+    return res
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export { loginCheck, isloggedin, registerUser, logOut }

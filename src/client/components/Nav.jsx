@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom'
 
 export default class NavBar extends Component {
   render() {
-    // console.log(this.props.isLoggedin)
-
     return (
       <nav className='nav'>
         <NavLink to='/'>
