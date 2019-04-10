@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import InputField from './form/InputField'
 import { loginCheck, isloggedin } from '../../api/UserAPI'
 import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -48,6 +49,8 @@ export default class Login extends Component {
             this.setState({ redirect: true })
           } else if (res.data === 'Incorrect username.') {
             this.setState({ isValid: 'notValid' })
+          } else {
+            // Handle error and edge cases,
           }
         })
         .catch(err => console.log(err))
@@ -103,3 +106,9 @@ export default class Login extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return state
+}
+
+export default connect(mapStateToProps)(Login)
