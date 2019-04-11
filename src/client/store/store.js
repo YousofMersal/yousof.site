@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './reducers/reducer'
 import createSagaMiddleware from 'redux-saga'
+import { watchFetchUser } from './sagas/saga'
 
 //Checks if in dev enviroment. If it is it allows the use of redux dev tools
 const devTools =
@@ -26,5 +27,6 @@ const configStore = () => {
 }
 
 const store = configStore()
+store.runSaga(watchFetchUser)
 
 export default store

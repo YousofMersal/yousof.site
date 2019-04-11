@@ -1,8 +1,15 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { loginCheck } from '../../api/UserAPI'
+import { call, put, takeEvery } from 'redux-saga/effects'
+import { isloggedin } from '../../api/UserAPI'
 
-function* fetchUser(action) {
+export function* fetchUser() {
   try {
-    const user = yield call(loginCheck, action)
-  } catch (err) {}
+    const loginyield = yield call(isloggedin)
+    yield put({ type: 'USER_LOGIN_ASYNC', loginyield })
+  } catch (err) {
+    yield put({ type: 'USER_LOG_ERROR', err })
+  }
+}
+
+export function* watchFetchUser() {
+  yield takeEvery('USER_LOGIN', fetchUser)
 }
