@@ -3,13 +3,13 @@ import { isloggedin } from '../../api/UserAPI'
 
 export function* fetchUser() {
   try {
-    const loginyield = yield call(isloggedin)
-    yield put({ type: 'USER_LOGIN_ASYNC', loginyield })
+    const loginYield = yield call(isloggedin)
+    yield put({ type: 'CHECK_USER_ASYNC', loginYield })
   } catch (err) {
-    yield put({ type: 'USER_LOG_ERROR', err })
+    yield put({ type: 'CHECK_USER_ERROR', err })
   }
 }
 
 export function* watchFetchUser() {
-  yield takeEvery('USER_LOGIN', fetchUser)
+  yield takeEvery('CHECK_USER', fetchUser)
 }

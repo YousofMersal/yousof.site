@@ -7,7 +7,7 @@ import Login from './components/user/Login'
 import SignUp from './components/user/Signup'
 import { connect } from 'react-redux'
 import Profile from './components/user/Profile'
-import * as actionTypes from './store/actions/actions'
+import actionTypes from './store/actions/actions'
 
 class MyRoutes extends Component {
   componentDidMount() {
@@ -40,7 +40,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: () => dispatch(actionTypes.userLogin())
+    onLogin: () => dispatch(actionTypes.sessionStatus())
   }
 }
 
