@@ -1,5 +1,6 @@
 const USER_LOGIN = 'USER_LOGIN'
 const USER_LOGOUT = 'USER_LOGOUT'
+const CHECK_USER = 'CHECK_USER'
 
 const userLogin = () => {
   return {
@@ -14,4 +15,10 @@ const userLogout = response => {
   }
 }
 
-export { USER_LOGIN, USER_LOGOUT, userLogin, userLogout }
+const sessionStatus = () => {
+  return {
+    type: CHECK_USER
+  }
+}
+
+export default { USER_LOGIN, USER_LOGOUT, userLogin, userLogout, sessionStatus }
