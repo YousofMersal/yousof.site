@@ -3,9 +3,9 @@ const initalState = {
 }
 
 const reducer = (state = initalState, action) => {
-  if (action.type === 'USER_LOGIN') {
+  if (action.type === 'USER_LOGIN_ASYNC') {
     const newState = Object.assign({}, state)
-    newState.isLoggedIn = action.value
+    newState.isLoggedIn = action.loginyield.data
     return newState
   }
 
