@@ -3,6 +3,7 @@ import InputField from './form/InputField'
 import { loginCheck, isloggedin } from '../../api/UserAPI'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import actionTypes from '../../store/actions/actions'
 
 class Login extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Login extends Component {
   }
 
   handleCheck = () => {
+    this.props.onCheckLogin()
     isloggedin().then(res => console.log(res))
   }
 
@@ -42,18 +44,19 @@ class Login extends Component {
         username: '',
         password: ''
       })
-      loginCheck(userinfo)
-        .then(res => {
-          console.log(res)
+      try {
+        loginCheck(userinfo).then(res => {
+          console.log('Logincheck called')
+          this.props.Login()
           if (res.data === 'OK') {
             this.setState({ redirect: true })
           } else if (res.data === 'Incorrect username.') {
             this.setState({ isValid: 'notValid' })
-          } else {
-            // Handle error and edge cases,
           }
         })
-        .catch(err => console.log(err))
+      } catch (err) {
+        console.log(err)
+      }
     } else {
       this.setState({ isValid: 'notValid' })
     }
@@ -108,7 +111,17 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-  return state
+  return { isLoggedIn: state.isLoggedIn }
 }
 
-export default connect(mapStateToProps)(Login)
+const mapDispatchToProps = dispatch => {
+  return {
+    onCheckLogin: () => dispatch(actionTypes.sessionStatus()),
+    Login: () => dispatch(actionTypes.sessionStatus())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login)
