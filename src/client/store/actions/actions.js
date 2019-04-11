@@ -1,11 +1,17 @@
 const USER_LOGIN = 'USER_LOGIN'
 const USER_LOGOUT = 'USER_LOGOUT'
 
-const userLogin = value => {
+const userLogin = () => {
   return {
-    type: USER_LOGIN,
-    value: value.data
+    type: USER_LOGIN
   }
 }
 
-export { USER_LOGIN, USER_LOGOUT, userLogin }
+const userLogout = response => {
+  return {
+    type: USER_LOGOUT,
+    value: response.data
+  }
+}
+
+export { USER_LOGIN, USER_LOGOUT, userLogin, userLogout }
