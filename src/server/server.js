@@ -20,8 +20,8 @@ app.use(bodyParser.json())
 app.use(express.static(buildPath))
 
 const sessionOptions = {
-  store: new MongoStore({ mongooseConnection: connection }),
-  genid: req => {
+  store: new MongoStore({ mongooseConnection: connection, touchAfter: 24 * 3600 }),
+  genid: () => {
     return uuidv4()
   },
   cookie: { maxAge: 7 * 24 * 60 * 60 * 1000, secure: false },

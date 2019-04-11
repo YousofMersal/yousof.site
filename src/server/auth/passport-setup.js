@@ -30,7 +30,6 @@ passport.use(
         if (res) {
           req.session.isLoggedIn = true
           req.session.save()
-          console.log(req.session)
           return done(null, user)
         } else {
           return done(null, false, 'username already in use')

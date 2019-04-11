@@ -3,20 +3,26 @@ const passport = require('passport')
 
 const authcheck = (req, res, next) => {
   if (req.session.isLoggedIn) {
-    console.log(req.session)
     next()
   } else {
-    res.sendStatus(403)
+    res.send(false)
   }
 }
 
 router.post('/isloggedin', authcheck, (req, res) => {
-  console.log('checks out ' + req.session)
-  res.sendStatus(200)
+  res.send(true)
 })
 
-router.post('/login', passport.authenticate('login'), (req, res) => {
-  res.send({ message: 'Login succesfull' })
+router.post('/login', (req, res) => {
+  passport.authenticate('login', (err, user, info) => {
+    if (err) {
+      res.sendStatus(500)
+    } else if (user === false) {
+      res.send(info.message)
+    } else {
+      res.sendStatus(200)
+    }
+  })(req, res)
 })
 
 router.post('/signup', (req, res) => {
@@ -29,6 +35,12 @@ router.post('/signup', (req, res) => {
       res.sendStatus(201)
     }
   })(req, res)
+})
+
+router.get('/logout', authcheck, (req, res) => {
+  req.session.destroy(() => {
+    res.send('OK')
+  })
 })
 
 module.exports = {

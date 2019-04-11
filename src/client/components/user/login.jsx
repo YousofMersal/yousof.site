@@ -1,19 +1,24 @@
 import React, { Component } from 'react'
 import InputField from './form/InputField'
 import { loginCheck, isloggedin } from '../../api/UserAPI'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import actionTypes from '../../store/actions/actions'
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
       username: '',
       password: '',
       remember: true,
-      isValid: null
+      isValid: null,
+      redirect: null
     }
   }
 
   handleCheck = () => {
+    this.props.onCheckLogin()
     isloggedin().then(res => console.log(res))
   }
 
@@ -39,11 +44,19 @@ export default class Login extends Component {
         username: '',
         password: ''
       })
-      loginCheck(userinfo)
-        .then(res => {
-          return this.setState({ redirect: true, isValid: null })
+      try {
+        loginCheck(userinfo).then(res => {
+          console.log('Logincheck called')
+          this.props.Login()
+          if (res.data === 'OK') {
+            this.setState({ redirect: true })
+          } else if (res.data === 'Incorrect username.') {
+            this.setState({ isValid: 'notValid' })
+          }
         })
-        .catch(err => console.log(err))
+      } catch (err) {
+        console.log(err)
+      }
     } else {
       this.setState({ isValid: 'notValid' })
     }
@@ -60,6 +73,7 @@ export default class Login extends Component {
       <div>
         <div>
           <button type='submit' onClick={this.handleCheck}>
+            {this.state.redirect ? <Redirect to='/' /> : null}
             Test longin check
           </button>
         </div>
@@ -86,9 +100,28 @@ export default class Login extends Component {
               checked={this.state.remember}
               onChange={this.handleInpChange}
             />
+            {this.state.isValid === 'notValid' ? (
+              <h3>invalid username or password</h3>
+            ) : null}
           </div>
         </form>
       </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return { isLoggedIn: state.isLoggedIn }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onCheckLogin: () => dispatch(actionTypes.sessionStatus()),
+    Login: () => dispatch(actionTypes.sessionStatus())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login)
