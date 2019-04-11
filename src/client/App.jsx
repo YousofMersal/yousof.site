@@ -3,18 +3,15 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Landing from './containers/Landing'
 import SingleMovie from './containers/SingleMovie'
 import Nav from './components/Nav'
-import { userLogin } from './store/actions/actions'
 import Login from './components/user/Login'
 import SignUp from './components/user/Signup'
 import { connect } from 'react-redux'
-import { isloggedin } from './api/UserAPI'
 import Profile from './components/user/Profile'
+import * as actionTypes from './store/actions/actions'
 
 class MyRoutes extends Component {
   componentDidMount() {
-    isloggedin().then(res => {
-      this.props.onLogin(res)
-    })
+    this.props.onLogin()
   }
 
   render() {
@@ -43,7 +40,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: res => dispatch(userLogin(res))
+    onLogin: () => dispatch(actionTypes.userLogin())
   }
 }
 
