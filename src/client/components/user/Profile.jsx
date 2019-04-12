@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actionTypes from '../../store/actions/actions'
-import { logOut } from '../../api/UserAPI'
+import LogoutButton from './form/LogoutButton'
 
-const Profile = props => {
-  const handleLogOut = () => {
-    logOut().then(res =>
-      res.data === 'OK' ? props.onSessionStatus() && props.history.push('/') : null
+class Profile extends Component {
+  render() {
+    return (
+      <div>
+        <LogoutButton
+          history={this.props.history}
+          onSessionStatus={this.props.onSessionStatus}
+        />
+      </div>
     )
   }
-  return <button onClick={handleLogOut}>logout</button>
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
     isLoggedIn: state.isLoggedIn
   }

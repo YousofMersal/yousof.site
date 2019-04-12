@@ -46,7 +46,6 @@ class Login extends Component {
       })
       try {
         loginCheck(userinfo).then(res => {
-          console.log('Logincheck called')
           this.props.Login()
           if (res.data === 'OK') {
             this.setState({ redirect: true })
