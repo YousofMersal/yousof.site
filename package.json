@@ -1,4 +1,5 @@
 {
+  "proxy": "http://localhost:9001",
   "name": "yousof.site",
   "version": "0.2.1",
   "private": true,
@@ -125,6 +126,5 @@
     "presets": [
       "react-app"
     ]
-  },
-  "proxy": "http://localhost:9001"
+  }
 }
