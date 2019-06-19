@@ -15,9 +15,10 @@ class MyRoutes extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <Router>
-        <div>
+        <div id='app-root' className={'theme-' + this.props.theme}>
           <Nav isLoggedin={this.props.isLoggedIn} />
           <Switch>
             <Route exact path='/movie/:id' component={SingleMovie} />
@@ -34,13 +35,15 @@ class MyRoutes extends Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.isLoggedIn
+    isLoggedIn: state.isLoggedIn,
+    theme: state.theme
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogin: () => dispatch(actionTypes.sessionStatus())
+    onLogin: () => dispatch(actionTypes.sessionStatus()),
+    onThemeChange: currentTheme => dispatch(actionTypes.changeTheme(currentTheme))
   }
 }
 

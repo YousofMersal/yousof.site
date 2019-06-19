@@ -1,6 +1,8 @@
 const USER_LOGIN = 'USER_LOGIN'
 const USER_LOGOUT = 'USER_LOGOUT'
 const CHECK_USER = 'CHECK_USER'
+const CHANGE_THEME_DARK = 'CHANGE_THEME_DARK'
+const CHANGE_THEME_LIGHT = 'CHANGE_THEME_LIGHT'
 
 const userLogin = () => {
   return {
@@ -21,4 +23,23 @@ const sessionStatus = () => {
   }
 }
 
-export default { USER_LOGIN, USER_LOGOUT, userLogin, userLogout, sessionStatus }
+const changeTheme = currentTheme => {
+  if (currentTheme === 'light') {
+    return {
+      type: CHANGE_THEME_DARK
+    }
+  } else if (currentTheme === 'dark') {
+    return {
+      type: CHANGE_THEME_LIGHT
+    }
+  }
+}
+
+export default {
+  USER_LOGIN,
+  USER_LOGOUT,
+  userLogin,
+  userLogout,
+  sessionStatus,
+  changeTheme
+}
