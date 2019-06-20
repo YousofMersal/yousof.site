@@ -29,6 +29,7 @@ passport.use(
       user.validPassword({ password: password, hash: user.password }).then(res => {
         if (res) {
           req.session.isLoggedIn = true
+          req.session.userID = user.id
           req.session.save()
           return done(null, user)
         } else {

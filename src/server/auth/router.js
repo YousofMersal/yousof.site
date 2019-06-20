@@ -10,7 +10,7 @@ const authcheck = (req, res, next) => {
 }
 
 router.post('/isloggedin', authcheck, (req, res) => {
-  res.send(true)
+  res.send({ isLoggedIn: true, userID: req.session.userID })
 })
 
 router.post('/login', (req, res) => {
