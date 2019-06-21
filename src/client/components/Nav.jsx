@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default class NavBar extends Component {
+  onChanceThemeClick = theme => {
+    this.props.onChanceTheme()
+  }
+
   render() {
     return (
       <nav className='nav'>
@@ -23,6 +27,9 @@ export default class NavBar extends Component {
           )}
           <NavLink to='/tests'>Test</NavLink>
         </div>
+        <button onClick={() => this.props.themeChange(this.props.theme)}>
+          Change Theme
+        </button>
       </nav>
     )
   }

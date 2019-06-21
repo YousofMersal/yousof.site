@@ -19,7 +19,11 @@ class MyRoutes extends Component {
     return (
       <Router>
         <div id='app-root' className={'theme-' + this.props.theme}>
-          <Nav isLoggedin={this.props.isLoggedIn} />
+          <Nav
+            isLoggedin={this.props.isLoggedIn}
+            themeChange={this.props.onThemeChange}
+            theme={this.props.theme}
+          />
           <Switch>
             <Route exact path='/movie/:id' component={SingleMovie} />
             <Route exact path='/' component={Landing} />
