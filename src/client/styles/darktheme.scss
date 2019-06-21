@@ -1,0 +1,17 @@
+.theme-dark {
+  .nav {
+    background: #272727;
+  }
+  background: hsl(0, 0%, 7%);
+  color: hsla(0, 0%, 100%, 1);
+  min-height: 100%;
+}
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+#root {
+  height: 100%;
+}
