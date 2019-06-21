@@ -26,10 +26,10 @@ export default class NavBar extends Component {
             ]
           )}
           <NavLink to='/tests'>Test</NavLink>
+          <button onClick={() => this.props.themeChange(this.props.theme)}>
+            Change Theme
+          </button>
         </div>
-        <button onClick={() => this.props.themeChange(this.props.theme)}>
-          Change Theme
-        </button>
       </nav>
     )
   }
