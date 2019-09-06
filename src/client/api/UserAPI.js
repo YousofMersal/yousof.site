@@ -5,7 +5,7 @@ async function loginCheck(data) {
     const res = await Axios.post('/auth/login', { ...data })
     return res
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -14,7 +14,7 @@ async function registerUser(data) {
     const res = await Axios.post('/auth/signup', { ...data })
     return res
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -23,7 +23,7 @@ async function isloggedin() {
     const res = await Axios.post('/auth/isloggedin')
     return res
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -32,7 +32,7 @@ async function logOut() {
     const res = await Axios.get('/auth/logout')
     return res
   } catch (err) {
-    console.log(err)
+    console.eror(err)
   }
 }
 

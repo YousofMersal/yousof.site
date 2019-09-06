@@ -9,7 +9,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
   User.findOne({ _id: id })
     .then(done(null, id))
-    .catch(err => console.log(err))
+    .catch(err => console.error(err))
 })
 
 passport.use(
@@ -55,7 +55,7 @@ passport.use(
               done(null, res)
             )
           })
-          .catch(err => console.log(err))
+          .catch(err => console.error(err))
       }
     })
   })

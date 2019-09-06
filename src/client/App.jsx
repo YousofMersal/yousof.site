@@ -15,7 +15,6 @@ class MyRoutes extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <Router>
         <div id='app-root' className={'theme-' + this.props.theme}>

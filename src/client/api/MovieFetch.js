@@ -4,9 +4,9 @@ const errFunc = error => {
   if (error.response) {
     // The request was made and the server responded with a status code
     // that falls out of the range of 2xx
-    console.log(error.response.data)
-    console.log(error.response.status)
-    console.log(error.response.headers)
+    console.error(error.response.data)
+    console.error(error.response.status)
+    console.error(error.response.headers)
   } else if (error.request) {
     // The request was made but no response was received
     throw new Error('Whoops something went wring while POSTing!: ' + error.request)
@@ -14,7 +14,7 @@ const errFunc = error => {
     // Something happened in setting up the request that triggered an err
     throw new Error('Whoops something went wring while POSTing!: ' + error.response)
   }
-  console.log(error.config)
+  console.error(error.config)
 }
 
 async function getMovies(search) {
@@ -36,7 +36,5 @@ async function getSingleMovie(id) {
     errFunc(err)
   }
 }
-
-// getSingleMovie('181808').then(res => console.log(res))
 
 export { getMovies, getSingleMovie }

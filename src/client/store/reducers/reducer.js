@@ -12,7 +12,7 @@ const reducer = (state = initalState, action) => {
 
       return newState
     case 'CHECK_USER_ERROR':
-      console.log('[USER LOGIN ERROR] ', action.err)
+      console.error('[USER LOGIN ERROR] ', action.err)
       return state
     case 'CHANGE_THEME_LIGHT':
       newState.theme = 'light'

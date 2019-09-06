@@ -5,7 +5,7 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true
   })
-  .catch(err => console.log("Can't conenct to database"))
+  .catch(err => console.error("Can't conenct to database\n"))
 
 const User = require('./schemas/Users')
 

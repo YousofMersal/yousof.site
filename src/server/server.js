@@ -46,7 +46,7 @@ app.post('/api/getmultiple', (req, res) => {
     .then(response => {
       res.send(response.data)
     })
-    .catch(err => console.log(err))
+    .catch(err => console.error(err))
 })
 
 app.post('/api/getsingle', (req, res) => {
@@ -57,7 +57,7 @@ app.post('/api/getsingle', (req, res) => {
     .then(response => {
       res.send(response.data)
     })
-    .catch(err => console.log('/api/getsingle/ failed \n' + err))
+    .catch(err => console.error('/api/getsingle/ failed \n' + err))
 })
 
 app.get('/*', function(req, res) {

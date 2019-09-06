@@ -29,7 +29,7 @@ export default class Landing extends Component {
     })
     getMovies(searchTerm)
       .then(response => this.setState({ movies: response, loading: false }))
-      .catch(error => console.log(error))
+      .catch(error => console.error(error))
   }
 
   onKeyPress(event) {

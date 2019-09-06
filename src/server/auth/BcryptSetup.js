@@ -11,7 +11,7 @@ async function validatePassword(password, hash) {
     const bool = await bcrypt.compare(password, hash).then(res => res)
     return bool
   } catch (err) {
-    console.log('error comparin ' + err)
+    console.error('error comparing ' + err)
   }
 }
 
