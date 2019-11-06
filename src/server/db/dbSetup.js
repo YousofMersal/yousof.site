@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useUnifiedTopology: true
   })
   .catch(err => console.error("Can't conenct to database\n"))
 
