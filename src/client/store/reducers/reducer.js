@@ -1,6 +1,9 @@
 const initalState = {
   isLoggedIn: false,
-  theme: 'light'
+  theme:
+    window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light'
 }
 
 const reducer = (state = initalState, action) => {

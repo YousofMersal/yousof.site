@@ -39,10 +39,7 @@ class MyRoutes extends Component {
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.isLoggedIn,
-    theme:
-      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
+    theme: state.theme
   }
 }
 
