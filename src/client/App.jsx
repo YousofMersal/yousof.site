@@ -39,7 +39,10 @@ class MyRoutes extends Component {
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.isLoggedIn,
-    theme: state.theme
+    theme:
+      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light'
   }
 }
 
@@ -50,7 +53,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MyRoutes)
+export default connect(mapStateToProps, mapDispatchToProps)(MyRoutes)
