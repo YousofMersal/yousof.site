@@ -1,6 +1,6 @@
 require('dotenv').config()
 require('./auth/passport-setup')
-const uuidv4 = require('uuid/v4')
+const { v4: uuid_v4 } = require('uuid')
 const { connection } = require('./db/dbSetup')
 const passport = require('passport')
 const Axios = require('axios')
@@ -22,12 +22,12 @@ app.use(express.static(buildPath))
 const sessionOptions = {
   store: new MongoStore({ mongooseConnection: connection, touchAfter: 24 * 3600 }),
   genid: () => {
-    return uuidv4()
+    return uuid_v4()
   },
   cookie: { maxAge: 7 * 24 * 60 * 60 * 1000, secure: false },
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
 }
 
 app.set('trust proxy') // trust first proxy
@@ -43,10 +43,10 @@ app.post('/api/getmultiple', (req, res) => {
   Axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=en-US&query=${searchTerm}`
   )
-    .then(response => {
+    .then((response) => {
       res.send(response.data)
     })
-    .catch(err => console.error(err))
+    .catch((err) => console.error(err))
 })
 
 app.post('/api/getsingle', (req, res) => {
@@ -54,17 +54,21 @@ app.post('/api/getsingle', (req, res) => {
   Axios.get(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}&language=en-US`
   )
-    .then(response => {
+    .then((response) => {
       res.send(response.data)
     })
-    .catch(err => console.error('/api/getsingle/ failed \n' + err))
+    .catch((err) => console.error('/api/getsingle/ failed \n' + err))
 })
 
-app.get('/*', function(req, res) {
+app.get('/*', function (req, res) {
   const indexPath = path.join(buildPath, 'index.html')
   res.sendFile(indexPath)
 })
 
 app.listen(port, () => {
-  console.log('Koala Keeper is up and running on port: ' + port)
+  if (process.env.NODE_ENV == 'development') {
+    console.log('Server is running on http://localhost:' + port)
+  } else {
+    console.log('Koala Keeper is up and running on port: ' + port)
+  }
 })
