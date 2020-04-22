@@ -26,3 +26,6 @@ yarn-error.log*
 
 #From desktop
 desktop.ini
+
+#parcel
+.cache
