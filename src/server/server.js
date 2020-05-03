@@ -27,7 +27,7 @@ const sessionOptions = {
   cookie: { maxAge: 7 * 24 * 60 * 60 * 1000, secure: false },
   secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: false
 }
 
 app.set('trust proxy') // trust first proxy
@@ -43,10 +43,10 @@ app.post('/api/getmultiple', (req, res) => {
   Axios.get(
     `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=en-US&query=${searchTerm}`
   )
-    .then((response) => {
+    .then(response => {
       res.send(response.data)
     })
-    .catch((err) => console.error(err))
+    .catch(err => console.error(err))
 })
 
 app.post('/api/getsingle', (req, res) => {
@@ -54,10 +54,10 @@ app.post('/api/getsingle', (req, res) => {
   Axios.get(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}&language=en-US`
   )
-    .then((response) => {
+    .then(response => {
       res.send(response.data)
     })
-    .catch((err) => console.error('/api/getsingle/ failed \n' + err))
+    .catch(err => console.error('/api/getsingle/ failed \n' + err))
 })
 
 app.get('/*', function (req, res) {
