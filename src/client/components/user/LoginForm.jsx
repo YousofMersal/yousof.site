@@ -4,6 +4,7 @@ import { loginCheck, isloggedin } from '../../api/UserAPI'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import actionTypes from '../../store/actions/actions'
+import Button from '@material-ui/core/Button'
 
 class Login extends Component {
   constructor(props) {
@@ -69,16 +70,22 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className='formContainer'>
         <div>
-          <button type='submit' onClick={this.handleCheck}>
+          <Button
+            type='submit'
+            onClick={this.handleCheck}
+            color='primary'
+            variant='outlined'>
             {this.state.redirect ? <Redirect to='/' /> : null}
             Test longin check
-          </button>
+          </Button>
         </div>
+
         <form onSubmit={this.onSubmitClickHandler}>
           <InputField
             type='text'
+            placeholder='username'
             name='username'
             val={this.state.username}
             pasedfunc={this.handleInpChange}
@@ -87,6 +94,7 @@ class Login extends Component {
           <InputField
             type='password'
             name='password'
+            placeholder='password'
             val={this.state.password}
             pasedfunc={this.handleInpChange}
             onKeyPress={this.handleKeyDown}
@@ -120,7 +128,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

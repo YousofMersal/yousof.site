@@ -1,5 +1,6 @@
 import React from 'react'
 import { logOut } from '../../../api/UserAPI'
+import Button from '@material-ui/core/Button'
 
 const LogoutButton = props => {
   const handleLogOut = () => {
@@ -7,7 +8,11 @@ const LogoutButton = props => {
       res.data === 'OK' ? props.onSessionStatus() && props.history.push('/') : null
     )
   }
-  return <button onClick={handleLogOut}>logout</button>
+  return (
+    <Button color='primary' variant='outlined' onClick={handleLogOut}>
+      logout
+    </Button>
+  )
 }
 
 export default LogoutButton

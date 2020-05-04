@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
 
 export default class NavBar extends Component {
   onChanceThemeClick = theme => {
@@ -26,9 +27,13 @@ export default class NavBar extends Component {
             ]
           )}
           <NavLink to='/tests'>Test</NavLink>
-          <button onClick={() => this.props.themeChange(this.props.theme)}>
+          <Button
+            variant='contained'
+            color='primary'
+            size='small'
+            onClick={() => this.props.themeChange(this.props.theme)}>
             Change Theme
-          </button>
+          </Button>
         </div>
       </nav>
     )

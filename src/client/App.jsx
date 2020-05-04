@@ -7,6 +7,7 @@ import Login from './components/user/LoginForm'
 import SignUp from './components/user/SignupForm'
 import { connect } from 'react-redux'
 import Profile from './components/user/Profile'
+import { ThemeProvider } from '@material-ui/core/styles'
 import actionTypes from './store/actions/actions'
 
 class MyRoutes extends Component {
@@ -17,20 +18,22 @@ class MyRoutes extends Component {
   render() {
     return (
       <Router>
-        <div id='app-root' className={'theme-' + this.props.theme}>
-          <Nav
-            isLoggedin={this.props.isLoggedIn}
-            themeChange={this.props.onThemeChange}
-            theme={this.props.theme}
-          />
-          <Switch>
-            <Route exact path='/movie/:id' component={SingleMovie} />
-            <Route exact path='/' component={Landing} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/signup' component={SignUp} />
-            <Route exact path='/profile' component={Profile} />
-          </Switch>
-        </div>
+        <ThemeProvider>
+          <div id='app-root' className={'theme-' + this.props.theme}>
+            <Nav
+              isLoggedin={this.props.isLoggedIn}
+              themeChange={this.props.onThemeChange}
+              theme={this.props.theme}
+            />
+            <Switch>
+              <Route exact path='/movie/:id' component={SingleMovie} />
+              <Route exact path='/' component={Landing} />
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/signup' component={SignUp} />
+              <Route exact path='/profile' component={Profile} />
+            </Switch>
+          </div>
+        </ThemeProvider>
       </Router>
     )
   }

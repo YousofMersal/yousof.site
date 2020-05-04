@@ -2,10 +2,12 @@
   .nav {
     background: #272727;
   }
+
   .inpField {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 1);
     background-color: #272727;
   }
+
   .inpField:focus {
     color: hsla(0, 0%, 100%, 1);
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
@@ -14,6 +16,7 @@
     text-align: center;
     outline: none;
   }
+
   * {
     color: hsla(0, 0%, 100%, 1);
   }
