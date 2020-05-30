@@ -13,9 +13,9 @@ export default class NavBar extends Component<any, any> {
         <NavLink to='/'>
           <img
             className='navlogo'
-            src={require(this.props.themeChange === true
-              ? './assets/yousoftware.svg'
-              : './assets/yousoftware_inverted.svg')}
+            src={require(this.props.theme === 'dark'
+              ? './assets/yousoftware_inverted.svg'
+              : './assets/yousoftware.svg')}
             alt=''
           />
         </NavLink>
