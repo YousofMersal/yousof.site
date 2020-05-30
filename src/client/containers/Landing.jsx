@@ -41,7 +41,7 @@ export default class Landing extends Component {
   render() {
     return (
       <div>
-        <h1 className='title'>Koala Keeper</h1>
+        <h1 className='title'>Yousoftware</h1>
         <SearchBar
           type='text'
           className='inpField'

@@ -69,6 +69,6 @@ app.listen(port, () => {
   if (process.env.NODE_ENV == 'development') {
     console.log('Server is running on http://localhost:' + port)
   } else {
-    console.log('Koala Keeper is up and running on port: ' + port)
+    console.log('yousoftware is up and running on port: ' + port)
   }
 })

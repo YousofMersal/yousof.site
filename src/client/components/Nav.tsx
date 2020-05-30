@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 
-export default class NavBar extends Component {
+export default class NavBar extends Component<any, any> {
   onChanceThemeClick = theme => {
     this.props.onChanceTheme()
   }
@@ -11,7 +11,13 @@ export default class NavBar extends Component {
     return (
       <nav className='nav'>
         <NavLink to='/'>
-          <img className='navlogo' src={require('./assets/koala.svg')} alt='' />
+          <img
+            className='navlogo'
+            src={require(this.props.themeChange === true
+              ? './assets/yousoftware.svg'
+              : './assets/yousoftware_inverted.svg')}
+            alt=''
+          />
         </NavLink>
         <div className='nav-links'>
           {this.props.isLoggedin ? (

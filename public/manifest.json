@@ -1,9 +1,9 @@
 {
-  "short_name": "Koala K",
-  "name": "Koala Keeper",
+  "short_name": "yousoftware",
+  "name": "yousoftware app",
   "icons": [
     {
-      "src": "koala.ico",
+      "src": "yousoftwarefav.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
