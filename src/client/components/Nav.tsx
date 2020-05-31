@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import Switch from '@material-ui/core/Switch'
 
 export default class NavBar extends Component<any, any> {
-  onChanceThemeClick = theme => {
+  onChanceThemeClick = () => {
     this.props.onChanceTheme()
   }
 

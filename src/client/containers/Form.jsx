@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Input from '../components/user/form/InputField'
-import { makeStyles } from '@material-ui/core/styles'
 
 export default class Form extends Component {
   constructor(props) {
