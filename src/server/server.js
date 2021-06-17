@@ -1,4 +1,4 @@
-require('dotenv').config()
+const dotenv = require('dotenv').config()
 require('./auth/passport-setup')
 const { v4: uuid_v4 } = require('uuid')
 const { connection } = require('./db/dbSetup')
@@ -13,14 +13,15 @@ const buildPath = path.join(__dirname, '../../build')
 const port = process.env.PORT || 9001
 const authrouter = require('./auth/router')
 const apikey = process.env.APIKEY
-const MongoStore = require('connect-mongo')(session)
+const MongoStore = require('connect-mongo')
 
 app.use('/user', authrouter.router)
 app.use(bodyParser.json())
 app.use(express.static(buildPath))
 
+
 const sessionOptions = {
-  store: new MongoStore({ mongooseConnection: connection, touchAfter: 24 * 3600 }),
+  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI, touchAfter: 24 * 3600 }),
   genid: () => {
     return uuid_v4()
   },
@@ -60,7 +61,7 @@ app.post('/api/getsingle', (req, res) => {
     .catch(err => console.error('/api/getsingle/ failed \n' + err))
 })
 
-app.get('/*', function (req, res) {
+app.get('/*', function (_, res) {
   const indexPath = path.join(buildPath, 'index.html')
   res.sendFile(indexPath)
 })

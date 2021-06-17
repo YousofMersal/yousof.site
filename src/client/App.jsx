@@ -40,17 +40,17 @@ class MyRoutes extends Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    isLoggedIn: state.isLoggedIn,
-    theme: state.theme
-  }
+    return {
+        isLoggedIn: state.isLoggedIn,
+        theme: state.theme
+    }
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    onLogin: () => dispatch(actionTypes.sessionStatus()),
-    onThemeChange: currentTheme => dispatch(actionTypes.changeTheme(currentTheme))
-  }
+    return {
+        onLogin: () => dispatch(actionTypes.sessionStatus()),
+        onThemeChange: currentTheme => dispatch(actionTypes.changeTheme(currentTheme))
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyRoutes)

@@ -35,7 +35,7 @@ const changeTheme = currentTheme => {
   }
 }
 
-export default {
+const exports = {
   USER_LOGIN,
   USER_LOGOUT,
   userLogin,
@@ -43,3 +43,5 @@ export default {
   sessionStatus,
   changeTheme
 }
+
+export default exports
