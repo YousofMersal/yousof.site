@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import InputField from './form/InputField'
 import { loginCheck, isloggedin } from '../../api/UserAPI'
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import actionTypes from '../../store/actions/actions'
 import Button from '@material-ui/core/Button'
@@ -77,7 +77,7 @@ class Login extends Component {
             onClick={this.handleCheck}
             color='primary'
             variant='outlined'>
-            {this.state.redirect ? <Redirect to='/' /> : null}
+            {this.state.redirect ? <Navigate to='/' /> : null}
             Test longin check
           </Button>
         </div>

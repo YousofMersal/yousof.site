@@ -21,9 +21,8 @@ export default class Movie extends Component {
     if (this.state.movieInfo) {
       return (
         <FocusMovieCard
-          img={`https://image.tmdb.org/t/p/w342//${
-            this.state.movieInfo.poster_path
-          }`}
+          img={`https://image.tmdb.org/t/p/w342//${this.state.movieInfo.poster_path
+            }`}
           tagline={this.state.movieInfo.tagline}
           name={this.state.movieInfo.title}
           runtime={this.state.movieInfo.runtime}

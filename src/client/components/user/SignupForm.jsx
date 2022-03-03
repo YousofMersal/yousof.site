@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import InputField from './form/InputField'
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { registerUser } from '../../api/UserAPI'
 
 export default class SignUp extends Component {
@@ -60,7 +60,7 @@ export default class SignUp extends Component {
 
   render() {
     return this.state.redirect === true ? (
-      <Redirect to='/login' />
+      <Navigate to='/login' />
     ) : (
       <div>
         <form onSubmit={this.onSubmitClickHandler}>

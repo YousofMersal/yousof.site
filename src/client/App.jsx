@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Landing from './containers/Landing'
 import SingleMovie from './containers/SingleMovie'
 import Nav from './components/Nav'
@@ -25,13 +25,13 @@ class MyRoutes extends Component {
               themeChange={this.props.onThemeChange}
               theme={this.props.theme}
             />
-            <Switch>
+            <Routes>
               <Route exact path='/movie/:id' component={SingleMovie} />
               <Route exact path='/' component={Landing} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={SignUp} />
               <Route exact path='/profile' component={Profile} />
-            </Switch>
+            </Routes>
           </div>
         </ThemeProvider>
       </Router>
@@ -40,17 +40,17 @@ class MyRoutes extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-        isLoggedIn: state.isLoggedIn,
-        theme: state.theme
-    }
+  return {
+    isLoggedIn: state.isLoggedIn,
+    theme: state.theme
+  }
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-        onLogin: () => dispatch(actionTypes.sessionStatus()),
-        onThemeChange: currentTheme => dispatch(actionTypes.changeTheme(currentTheme))
-    }
+  return {
+    onLogin: () => dispatch(actionTypes.sessionStatus()),
+    onThemeChange: currentTheme => dispatch(actionTypes.changeTheme(currentTheme))
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyRoutes)
