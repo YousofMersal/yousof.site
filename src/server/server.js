@@ -61,7 +61,7 @@ app.post('/api/getsingle', (req, res) => {
     .catch(err => console.error('/api/getsingle/ failed \n' + err))
 })
 
-app.get('/*', function (_, res) {
+app.get('/*', function(_, res) {
   const indexPath = path.join(buildPath, 'index.html')
   res.sendFile(indexPath)
 })
