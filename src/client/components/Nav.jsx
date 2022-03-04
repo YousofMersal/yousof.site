@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import { ReactComponent as Logo } from './assets/yousoftware.svg'
+import { ReactComponent as LogoDark } from './assets/yousoftware_inverted.svg'
 import Switch from '@material-ui/core/Switch'
 
-export default class NavBar extends Component<any, any> {
+export default class NavBar extends Component {
   onChanceThemeClick = () => {
     this.props.onChanceTheme()
   }
@@ -11,13 +13,14 @@ export default class NavBar extends Component<any, any> {
     return (
       <nav className='nav'>
         <NavLink to='/'>
-          <img
-            className='navlogo'
-            src={require(this.props.theme === 'dark'
-              ? './assets/yousoftware_inverted.svg'
-              : './assets/yousoftware.svg')}
-            alt=''
-          />
+          {/* <img */}
+          {/*   className='navlogo' */}
+          {/*   src={require(this.props.theme === 'dark' */}
+          {/*     ? './assets/yousoftware_inverted.svg' */}
+          {/*     : './assets/yousoftware.svg')} */}
+          {/*   alt='' */}
+          {/* /> */}
+          {this.props.theme === 'dark' ? <LogoDark className='navlogo' /> : <Logo className='navlogo' />}
         </NavLink>
         <div className='nav-links'>
           {this.props.isLoggedin ? (
