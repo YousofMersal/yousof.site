@@ -24,7 +24,7 @@
     "esbuild": "^0.14.23",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
-    "mongoose": "^6.2.4",
+    "mongoose": "^6.4.6",
     "node-sass": "^7.0.1",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
